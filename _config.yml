@@ -15,7 +15,7 @@ timezone: 'Asia/Shanghai'
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://blog.fzero.me
 # permalink: :year/:month/:day/:title/
-permalink: archives/:abbrlink.html
+permalink: pages/:hash.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -55,6 +55,7 @@ prismjs:
   preprocess: true
   line_number: true
   tab_replace: ''
+  exclude_languages: ['mermaid']
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -104,9 +105,9 @@ theme: butterfly
 deploy:
   type: ''
 # abbrlink 配置
-abbrlink:
-    alg: crc32   #算法： crc16(default) and crc32
-    rep: dex     #进制： dec(default) and hex
+# abbrlink:
+#     alg: crc32   #算法： crc16(default) and crc32
+#     rep: dex     #进制： dec(default) and hex
 
 markdown:
   plugins:

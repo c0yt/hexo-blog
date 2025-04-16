@@ -1,18 +1,19 @@
 ---
 title: rsync+sersync实现实时备份同步
-author: null
+description: 本文详细介绍了在CentOS 7.9环境下，通过rsync与sersync组合实现实时文件同步的完整方案。rsync负责高效差量传输，sersync通过inotify机制实时监控文件变化并触发同步，有效解决了手动同步延迟问题。
+keywords: rsync,Linux,运维
+author: 'null'
+cover: /img/linux.png
 category:
-  - study
+  - Linux
 tag:
   - Linux
-  - Study
+  - 笔记
   - rsync
   - 运维
 abbrlink: 1
 date: 2025-04-14 22:18:22
 ---
-# rsync+sersync实现实时备份同步
-
 ## 简介
 
 :::: info (*´▽｀)ノノ

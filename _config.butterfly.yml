@@ -73,7 +73,7 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img:
+default_top_img: /img/bgg.jpg
 
 # The banner image of index page
 index_img:
@@ -112,6 +112,7 @@ cover:
   archives_enable: true
   # When cover is not set, the default cover is displayed
   default_cover:
+    - /img/bak.webp
     # - xxx.jpg
 
 # Replace Broken Images
@@ -185,7 +186,7 @@ subtitle:
 # 5: Info displayed on the cover
 # 6: Masonry layout - Cover on top, info on the bottom
 # 7: Masonry layout - Info displayed on the cover
-index_layout: 6
+index_layout: 1
 
 # Display the article introduction on homepage
 # 1: description
@@ -801,13 +802,13 @@ display_mode: light
 
 # Configuration for beautifying the content of the article
 beautify:
-  enable: false
+  enable: true
   # Specify the field to beautify (site or post)
   field: post
   # Specify the icon to be used as a prefix for the title, such as '\f0c1'
-  title_prefix_icon:
+  title_prefix_icon: '\f06a'
   # Specify the color of the title prefix icon, such as '#F47466'
-  title_prefix_icon_color:
+  title_prefix_icon_color: '#FFE4E1'
 
 # Global font settings
 # Don't modify the following settings unless you know how they work
@@ -879,16 +880,16 @@ fireworks:
 
 # Mouse click effects: Heart symbol
 click_heart:
-  enable: true
+  enable: false
   mobile: false
 
 # Mouse click effects: words
 clickShowText:
-  enable: false
+  enable: true
   text:
-    # - I
-    # - LOVE
-    # - YOU
+    - I
+    - LOVE
+    - YOU
   fontSize: 15px
   random: false
   mobile: false
@@ -925,9 +926,9 @@ abcjs:
 # Mermaid
 # https://github.com/mermaid-js/mermaid
 mermaid:
-  enable: false
+  enable: true
   # Write Mermaid diagrams using code blocks
-  code_write: false
+  code_write: true
   # built-in themes: default / forest / dark / neutral
   theme:
     light: default
@@ -953,6 +954,7 @@ chartjs:
     dark: 'transparent'
 
 # Note - Bootstrap Callout
+# 标签外挂
 note:
   # Note tag style values:
   #  - simple    bs-callout old alert style. Default.
@@ -972,7 +974,7 @@ note:
 
 # https://github.com/MoOx/pjax
 pjax:
-  enable: false
+  enable: true
   # Exclude the specified pages from pjax, such as '/music/'
   exclude:
     # - /xxxxxx/
@@ -986,15 +988,15 @@ aplayerInject:
 # https://github.com/polonel/SnackBar
 # position: top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
 snackbar:
-  enable: false
-  position: bottom-left
+  enable: true
+  position: top-right
   # The background color of Toast Notification in light mode and dark mode
   bg_light: '#49b1f5'
   bg_dark: '#1f1f1f'
 
 # Instant.page
 # https://instant.page/
-instantpage: false
+instantpage: true
 
 # Lazyload
 # https://github.com/verlok/vanilla-lazyload

@@ -1,27 +1,54 @@
 - author: 'null'
-  avatar: https://butterfly.js.org/img/avatar.png
-  date: 2024-06-21 23:33:26
+  avatar: /img/author.png
+  date: 2025-03-20 20:58:26
   key: key-1
   content: |
-    This is a sample content for **Author 1**.
-    ![Sample Image](https://via.placeholder.com/150)
+    网站上线啦 ~
   tags:
-    - tags1
-    - tags2
-- author: Butterfly
-  avatar: https://butterfly.js.org/img/avatar.png
-  date: 2024-06-20 23:33:26
+    - 建站
+
+- author: 'null'
+  avatar: /img/author.png
+  date: 2025-03-20 19:36:26
   key: key-2
   content: |
-    This is a sample content for **Author 2**.
-    ![Sample Image](https://via.placeholder.com/150)
+    今日份快乐 ~
+    小黑手办！
+    <img src="https://s21.ax1x.com/2025/03/23/pEBCpK1.jpg" alt="小黑手办" width="250" />
   tags:
-    - tag2
-    - tag3
+    - 名侦探柯南
+    - 今日份快乐
 
-- author: Butterfly
-  avatar: https://butterfly.js.org/img/avatar.png
-  date: 2024-06-19 23:33:26
+- author: 'null'
+  avatar: /img/author.png
+  date: 2025-03-27 10:42:36
   key: key-3
   content: |
-    This is a sample content for **Author 3**.
+    今天的我也是Lv6⚡️啦，嘿嘿
+    <img src="https://s21.ax1x.com/2025/03/27/pErCXo6.png" alt="LV6⚡️" width="300" />
+  tags:
+    - 今日份快乐
+
+- author: 'null'
+  avatar: /img/author.png
+  date: 2025-03-29 21:55:41
+  key: key-4
+  content: |
+    &nbsp;&nbsp;&nbsp;&nbsp;今天是大学期间最后一次十大歌手比赛了，也许最后一次在现场听到她唱歌了吧。
+    &nbsp;&nbsp;&nbsp;&nbsp;依稀记得，2023年寒假，我的好兄弟邀请我去**回森**听他唱歌，后面我渐渐也喜欢上了唱歌，开始发作品，也遇到了很多不错的朋友，每次发歌他们都会来支持我的作品。步入开学，正巧听说有十大歌手这个比赛的观众报名，我啪的一下就报名了hh，在其中印象最深的是，她唱的《无与伦比的美丽》，那声音很特别，很想认识她，后面我犹豫了好久，总算是鼓起勇气加上了她的vx，结果很快就得到了回复，当时有点不知所措hhh，那是我第一次加别人vx(非工作情况)，后面我就成为她的歌迷啦 ~
+    <img src="https://s21.ax1x.com/2025/03/30/pEs3IGF.jpg" alt="first chat with her." width="300" />
+    &nbsp;&nbsp;&nbsp;&nbsp;再后面她每次都会报名比赛，我也会报名比赛观众去听她唱歌。
+    &nbsp;&nbsp;&nbsp;&nbsp;光阴似箭，临近毕业，青春也快结束了，每个人都在朝着自己未来的方向在努力，都在规划自己的人生，望且行且珍惜吧。
+  tags:
+    - 零碎往事
+
+- author: 'null'
+  avatar: /img/author.png
+  date: 2025-04-01 21:36:48
+  key: key-5
+  content: |
+    喜欢这句话：
+    &nbsp;&nbsp;&nbsp;&nbsp;“人生没有所谓正确的选择，只有努力让自己的选择变得正确”
+  tags:
+    - 摘句
+
