@@ -1902,6 +1902,13 @@
     "hexo-front-matter" "^1.0.0"
     "hexo-fs" "^3.1.0"
 
+"hexo-butterfly-envelope@^1.0.15":
+  "integrity" "sha512-Z12iYDhrrJkARSvCIYTVRPrlipLE9o5Zeh2kozj/MbLz5tcQmfr62w+qu+hOJh2XiZucAyyoUyZq5faKP4YD4A=="
+  "resolved" "https://registry.npmmirror.com/hexo-butterfly-envelope/-/hexo-butterfly-envelope-1.0.15.tgz"
+  "version" "1.0.15"
+  dependencies:
+    "pug" "^3.0.0"
+
 "hexo-cli@^4.3.2":
   "integrity" "sha512-druJeBgLpG9ncDS5AhBHdAXk0G4CFj8Qes09pApyZ6bR+nJW1JYiDMuilhudaKDdq+1l49jWXVTidkcb7p0Jbw=="
   "resolved" "https://registry.npmmirror.com/hexo-cli/-/hexo-cli-4.3.2.tgz"
@@ -3068,7 +3075,7 @@
   "resolved" "https://registry.npmmirror.com/pug-walk/-/pug-walk-2.0.0.tgz"
   "version" "2.0.0"
 
-"pug@^3.0.2":
+"pug@^3.0.0", "pug@^3.0.2":
   "integrity" "sha512-uBi6kmc9f3SZ3PXxqcHiUZLmIXgfgWooKWXcwSGwQd2Zi5Rb0bT14+8CJjJgI8AB+nndLaNgHGrcc6bPIB665g=="
   "resolved" "https://registry.npmmirror.com/pug/-/pug-3.0.3.tgz"
   "version" "3.0.3"

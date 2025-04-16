@@ -1,0 +1,14 @@
+@import "//at.alicdn.com/t/c/font_4895713_seepg0ctzeq.css";
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 15px;        /* 修改：统一图标大小为15px */
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #666;            /* 新增：统一图标颜色为灰色 */
+    display: inline-block;   /* 新增：确保图标大小一致 */
+    width: 15px;            /* 新增：固定宽度 */
+    height: 15px;           /* 新增：固定高度 */
+    line-height: 1;         /* 新增：确保垂直对齐 */
+    vertical-align: middle; /* 新增：垂直居中对齐 */
+}

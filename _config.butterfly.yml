@@ -16,18 +16,22 @@ nav:
   # Whether to fix navigation bar
   fixed: false
 
+# 51.la Analytics
+# https://v6.51.la/
+woyaola_analytics: 3Lt6KtKUz3txZc5I
+woyaola_perf: 3Lt6PsieSYbpkpdL
+
 menu:
-  主页: / || fas fa-home
-  导航: /find/ || fa fa-search
-  文章 || fa fa-graduation-cap:
-    分类: /categories/ || fa fa-archive
-    标签: /tags/ || fa fa-tags
-    归档: /archives/ || fa fa-folder-open
-  项目: /project/ || fa fa-folder
-  碎碎念: /think/ || fa fa-comments-o
+  主页: / || iconfont icon-house-chimney
+  导航: /find/ || iconfont icon-cube
+  文章 || iconfont icon-wenjianshu:
+    分类: /categories/ || iconfont icon-fenlei
+    标签: /tags/ || iconfont icon-tags
+    归档: /archives/ || iconfont icon-history
+  碎碎念: /think/ || iconfont icon-dongtai
   # 时光机: /timeline/ || fa-time
-  留言板: /comment/ || fa fa-paper-plane
-  关于: /about/ || fas fa-heart  
+  留言板: /comment/ || iconfont icon-comments
+  关于: /about/ || iconfont icon-guanyu
   # Home: / || fas fa-home
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
@@ -1042,6 +1046,7 @@ css_prefix: true
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
 inject:
   head:
+    - <link rel="stylesheet" href="/css/font.css">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # - <script src="xxxx"></script>
