@@ -113,7 +113,7 @@ deploy:
 
 markdown:
   plugins:
-    - '@renbaoshuo/markdown-it-katex'
+    # - '@renbaoshuo/markdown-it-katex'
 
 #envelope_comment
 #seehttps://akilar.top/posts/e2d3c450/
