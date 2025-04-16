@@ -103,7 +103,9 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: 'https://github.com/c0yt/hexo-blog.git'
+  branch: main
 # abbrlink 配置
 # abbrlink:
 #     alg: crc32   #算法： crc16(default) and crc32
