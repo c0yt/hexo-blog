@@ -776,7 +776,7 @@ tag_ui:
 rounded_corners_ui: true
 
 # Stretches the lines so that each line has equal width
-text_align_justify: true
+text_align_justify: false
 
 # Add a mask to the header and footer
 mask:
@@ -785,13 +785,13 @@ mask:
 
 # Loading Animation
 preloader:
-  enable: false
+  enable: true
   # source
   # 1. fullpage-loading
   # 2. pace (progress bar)
-  source: 1
+  source: 2
   # pace theme (see https://codebyzach.github.io/pace/)
-  pace_css_url:
+  pace_css_url: /css/center-simple.css
 
 # Page Transition
 enter_transitions: true
