@@ -599,6 +599,16 @@ waline:
   # Use Waline pageview count as the page view count
   pageview: true
   option:
+    reaction: true
+    requiredMeta: ['nick', 'mail']
+    emoji: [
+      "https://unpkg.com/@waline/emojis@1.1.0/tieba",
+      "https://unpkg.com/@waline/emojis@1.1.0/weibo",
+      "https://emoji.shojo.cn/bili/webp/tv_小电视_动图",
+      "https://emoji.shojo.cn/bili/webp/2233娘",
+      ]
+    wordLimit: 300
+    pageSize: 10
 
 # Utterances
 # https://utteranc.es/
