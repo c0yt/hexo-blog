@@ -77,7 +77,8 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img: /img/bgg.jpg
+# default_top_img: /img/bgg.jpg
+default_top_img: https://s21.ax1x.com/2025/04/17/pEh1H6P.jpg
 
 # The banner image of index page
 index_img:
