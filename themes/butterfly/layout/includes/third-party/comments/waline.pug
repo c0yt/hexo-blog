@@ -17,7 +17,22 @@ script.
         dark: 'html[data-theme="dark"]',
         comment: !{lazyload ? false : count},
         ...option,
-        path: isShuoshuo ? path : (option && option.path) || path
+        path: isShuoshuo ? path : (option && option.path) || path,  // 添加逗号
+        imageUploader: (file) => {
+          if (!file) {  
+            throw new Error('No file provided');  
+          }  
+          let formData = new FormData();
+          let headers = new Headers();
+          formData.append('file', file);
+          return fetch('https://api.xinyew.cn/api/jdtc', {
+            method: 'POST',
+            body: formData,
+            mode: 'cors',
+          })
+            .then((resp) => resp.json())
+            .then((resp) => resp.data.url);
+        }
       })
 
       if (isShuoshuo) {
@@ -29,6 +44,7 @@ script.
           }
         }
       }
+
     }
 
     const loadWaline = (el, path) => {
