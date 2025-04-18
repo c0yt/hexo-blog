@@ -429,7 +429,7 @@ anchor:
   # Click the headline to scroll and update the anchor
   click_to_scroll: true
 
-photofigcaption: true
+photofigcaption: false
 
 copy:
   enable: true
@@ -596,7 +596,7 @@ valine:
 # https://waline.js.org/
 waline:
   serverURL: https://talk.fzero.me/
-  bg: /img/comment.gif
+  bg:
   # Use Waline pageview count as the page view count
   pageview: true
   option:
@@ -1065,9 +1065,14 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/font.css">
     - <link rel="stylesheet" href="/css/comment.css">
+    # 引入GPT样式
+    - <link rel="stylesheet" href="https://ai.tianli0.top/static/public/tianli_gpt.min.css">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     - <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3Lt6KtKUz3txZc5I/quote.js?theme=#1690FF,#333333,#999999,#333333,#FFFFFF,#1690FF,13&f=12&display=0,0,0,1,0,1,0,1"></script>
+    # 引入GPT
+    - <script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'EMTLxiiRMAa';</script>
+    - <script src="https://ai.tianli0.top/static/public/tianli_gpt.min.js"></script>
     # - <script src="xxxx"></script>
 
 # CDN Settings
