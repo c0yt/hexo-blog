@@ -30,7 +30,7 @@ menu:
     归档: /archives/ || iconfont icon-history
   碎碎念: /think/ || iconfont icon-dongtai
   # 时光机: /timeline/ || fa-time
-  留言板: /comment/ || iconfont icon-comments
+  留言板: /comment/index.html || iconfont icon-comments
   关于: /about/ || iconfont icon-guanyu
   # Home: / || fas fa-home
   # List||fas fa-list:
@@ -609,6 +609,7 @@ waline:
       ]
     wordLimit: 300
     pageSize: 10
+
 
 # Utterances
 # https://utteranc.es/
