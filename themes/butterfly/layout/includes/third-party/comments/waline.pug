@@ -21,7 +21,17 @@ script.
         imageUploader: (file) => {
           if (!file) {  
             throw new Error('No file provided');  
-          }  
+          }
+          // 检查文件大小
+          const maxSize = 1 * 1024 * 1024; // 1MB
+          if (file.size > maxSize) {
+            Snackbar.show({
+              text: '图片大小不能超过 1MB',
+              backgroundColor: '#ffa099',
+              duration: 3000
+            });
+            return Promise.reject('File too large');
+          }
           let formData = new FormData();
           let headers = new Headers();
           formData.append('file', file);

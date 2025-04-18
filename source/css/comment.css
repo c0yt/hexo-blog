@@ -39,8 +39,19 @@
     background: #60c1e7;
     color: #fff;
 }
-
-.wl-editor {
+/* 评论区图片悬停效果 */
+.wl-content img {
+    transition: all 0.3s;
+    cursor: zoom-in;
+    border-radius: 3px;  /* 添加圆角 */
+    margin: 5px 0;      /* 添加上下间距 */
+}
+  
+.wl-content img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+/* .wl-editor {
     background-image: url(https://blog.fzero.me/img/comment.gif); ;
     background-size: 10%;
     background-repeat: no-repeat;
@@ -52,4 +63,4 @@
     background-position-x: 800px;
     background-position-y: 1000px;
     transition: all 0.2s ease-in-out 0s;
-}
+} */
