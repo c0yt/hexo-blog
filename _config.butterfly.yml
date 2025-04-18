@@ -601,7 +601,7 @@ waline:
   pageview: true
   option:
     reaction: true
-    requiredMeta: ['nick', 'mail']
+    requiredMeta: ['nick']
     emoji: [
       "https://unpkg.com/@waline/emojis@1.1.0/tieba",
       "https://unpkg.com/@waline/emojis@1.1.0/weibo",
@@ -610,6 +610,10 @@ waline:
       ]
     wordLimit: 300
     pageSize: 10
+    search: false
+    locale:
+      turnstileKey: '0x4AAAAAABN-lsnhXHhPFETM'
+      placeholder: "欢迎留下宝贵的建议，留下邮箱可以收到邮件提醒哦~"
 
 
 # Utterances
