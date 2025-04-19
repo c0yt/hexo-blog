@@ -211,3 +211,57 @@ h6::before {
   [data-theme="dark"] #welcome-info {
     background: #212121;
   }
+
+/* 欢迎信息卡片 */
+#welcome-info {
+  position: relative;
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--card-box-shadow);
+  border: var(--style-border);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  
+  /* 毛玻璃效果 */
+  backdrop-filter: var(--backdrop-filter);
+  -webkit-backdrop-filter: var(--backdrop-filter);
+  
+  /* 渐变背景 */
+  background: var(--trans-light);
+  
+  /* 文字样式 */
+  color: var(--font-color);
+  font-size: var(--global-font-size);
+  line-height: 2;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] #welcome-info {
+  background: var(--card-bg);
+  border: var(--style-border);
+  color: var(--heo-fontcolor);
+}
+
+/* 悬浮效果 */
+#welcome-info:hover {
+  box-shadow: var(--card-hover-box-shadow);
+  transform: translateY(-3px);
+}
+
+/* 欢迎信息内部链接样式 */
+#welcome-info a {
+  color: var(--heo-main);
+  text-decoration: none;
+}
+
+#welcome-info a:hover {
+  color: var(--heo-theme);
+  text-decoration: none;
+}
+
+/* 欢迎信息内部强调文本 */
+#welcome-info span {
+  color: var(--heo-theme);
+  font-weight: bold;
+}

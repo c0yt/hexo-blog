@@ -1,4 +1,14 @@
-//get请求
+// 添加一个显示加载状态的函数
+function showLoading() {
+    try {
+        document.getElementById("welcome-info").innerHTML = 
+            `<b><center>🎉 欢迎信息 🎉</center>&emsp;&emsp;<span style="color:var(--theme-color)">正在获取位置信息...</span></b>`;
+    } catch (err) {
+        console.log("无法显示加载状态");
+    }
+}
+
+// 修改 Ajax 请求部分
 $.ajax({
     type: 'get',
     url: 'https://apis.map.qq.com/ws/location/v1/ip',
@@ -7,11 +17,24 @@ $.ajax({
         output: 'jsonp',
     },
     dataType: 'jsonp',
+    beforeSend: function() {
+        showLoading(); // 请求发送前显示加载状态
+    },
     success: function (res) {
         ipLoacation = res;
         showWelcome();
+    },
+    error: function() {
+        // 请求失败时显示错误信息
+        try {
+            document.getElementById("welcome-info").innerHTML = 
+                `<b><center>🎉 欢迎信息 🎉</center>&emsp;&emsp;<span style="color:var(--theme-color)">抱歉，获取位置信息失败了 😢</span></b>`;
+        } catch (err) {
+            console.log("无法显示错误状态");
+        }
     }
-})
+});
+
 function getDistance(e1, n1, e2, n2) {
     const R = 6371
     const { sin, cos, asin, PI, hypot } = Math
@@ -29,6 +52,10 @@ function getDistance(e1, n1, e2, n2) {
 }
 
 function showWelcome() {
+    if (!ipLoacation || !ipLoacation.result || !ipLoacation.result.location) {
+        showLoading();
+        return;
+    }
 
     let dist = getDistance(113.34499552, 23.15537143, ipLoacation.result.location.lng, ipLoacation.result.location.lat); //这里换成自己的经纬度
     let pos = ipLoacation.result.ad_info.nation;
