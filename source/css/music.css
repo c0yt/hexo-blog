@@ -102,3 +102,45 @@
     --anzhiyu-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0);
     --anzhiyu-card-border: #42444a;
   }
+
+/* 音乐播放器样式 */
+.aplayer.aplayer-fixed {
+  z-index: 999;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: var(--anzhiyu-shadow-theme);
+}
+
+.aplayer.aplayer-fixed .aplayer-body {
+  background: var(--anzhiyu-card-bg);
+  border: var(--style-border);
+  max-width: 400px;
+}
+
+.aplayer.aplayer-fixed .aplayer-list {
+  border: var(--style-border);
+  background: var(--anzhiyu-card-bg);
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+  width: 66px !important;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0 !important;
+  width: 300px !important;
+}
+
+/* 适配暗色模式 */
+[data-theme='dark'] .aplayer {
+  background: var(--anzhiyu-card-bg);
+  border: var(--style-border);
+}
+
+[data-theme='dark'] .aplayer.aplayer-fixed .aplayer-lrc {
+  text-shadow: -1px -1px 0 var(--anzhiyu-black) !important;
+}

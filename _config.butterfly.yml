@@ -827,9 +827,9 @@ beautify:
   # Specify the field to beautify (site or post)
   field: post
   # Specify the icon to be used as a prefix for the title, such as '\f0c1'
-  title_prefix_icon: '\f06a'
+  title_prefix_icon: '\f863'
   # Specify the color of the title prefix icon, such as '#F47466'
-  title_prefix_icon_color: '#FFE4E1'
+  title_prefix_icon_color: '#F47466'
 
 # Global font settings
 # Don't modify the following settings unless you know how they work
@@ -906,7 +906,7 @@ click_heart:
 
 # Mouse click effects: words
 clickShowText:
-  enable: true
+  enable: false
   text:
     - I
     - LOVE
@@ -1067,6 +1067,7 @@ inject:
     - <link rel="stylesheet" href="/css/font.css">
     - <link rel="stylesheet" href="/css/comment.css">
     - <link rel="stylesheet" href="/css/music.css">
+    - <link rel="stylesheet" href="/css/custom.css">
     # 引入GPT样式
     - <link rel="stylesheet" href="https://ai.tianli0.top/static/public/tianli_gpt.min.css">
     # 引入Fancybox样式
@@ -1085,6 +1086,7 @@ inject:
     - <script async data-pjax src="/js/music.js"></script>
     - <script async data-pjax src="/js/musicfunction.js"></script>
     - <script async src="/js/musicOnlyOne.js"></script>
+    - <script defer src="/js/cursor.js"></script>
     # - <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
     # - <script src="xxxx"></script>
 
