@@ -277,6 +277,23 @@ h6::before {
 #welcome-info .welcome-loading {
   animation: welcome-loading 1.4s infinite;
 }
+/* 欢迎信息图标样式 */
+#welcome-info .fa-map-marker-alt {
+  color: var(--theme-color);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  animation: welcome-icon-bounce 1s ease-in-out infinite;
+}
+
+/* 图标跳动动画 */
+@keyframes welcome-icon-bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-3px);
+  }
+}
 
 /* 加载状态样式 */
 .loading-box {
