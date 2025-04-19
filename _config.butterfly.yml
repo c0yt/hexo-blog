@@ -1002,7 +1002,7 @@ pjax:
 
 # Inject the css and script (aplayer/meting)
 aplayerInject:
-  enable: false
+  enable: true
   per_page: true
 
 # Snackbar - Toast Notification
@@ -1066,6 +1066,7 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/font.css">
     - <link rel="stylesheet" href="/css/comment.css">
+    - <link rel="stylesheet" href="/css/music.css">
     # 引入GPT样式
     - <link rel="stylesheet" href="https://ai.tianli0.top/static/public/tianli_gpt.min.css">
     # 引入Fancybox样式
@@ -1073,13 +1074,17 @@ inject:
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # 禁用debug
-    - <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool' disable-menu='false'></script>
+    # - <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool' disable-menu='false'></script>
     - <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3Lt6KtKUz3txZc5I/quote.js?theme=#1690FF,#333333,#999999,#333333,#FFFFFF,#1690FF,13&f=12&display=0,0,0,1,0,1,0,1"></script>
     # 引入GPT
     - <script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'EMTLxiiRMAa';</script>
     - <script src="https://ai.tianli0.top/static/public/tianli_gpt.min.js"></script>
     # 引入Fancybox,适配waline
     - <script>Fancybox.bind('#waline-wrap .wl-content img');</script>
+    # 音乐
+    - <script async data-pjax src="/js/music.js"></script>
+    - <script async data-pjax src="/js/musicfunction.js"></script>
+    - <script async src="/js/musicOnlyOne.js"></script>
     # - <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
     # - <script src="xxxx"></script>
 
