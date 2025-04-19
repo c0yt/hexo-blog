@@ -1009,7 +1009,7 @@ aplayerInject:
 # https://github.com/polonel/SnackBar
 # position: top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
 snackbar:
-  enable: true
+  enable: false
   position: top-right
   # The background color of Toast Notification in light mode and dark mode
   bg_light: '#49b1f5'
@@ -1070,6 +1070,8 @@ inject:
     - <link rel="stylesheet" href="/css/custom.css">
     # 引入GPT样式
     - <link rel="stylesheet" href="https://ai.tianli0.top/static/public/tianli_gpt.min.css">
+    # 引入Vue通知
+    - <link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"> # 引入组件库(f12)
     # 引入Fancybox样式
     # - <link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css">
     # - <link rel="stylesheet" href="/xxx.css">
@@ -1087,6 +1089,21 @@ inject:
     - <script async data-pjax src="/js/musicfunction.js"></script>
     - <script async src="/js/musicOnlyOne.js"></script>
     - <script defer src="/js/cursor.js"></script>
+    # Vue通知
+    # 移除 async,确保按顺序加载
+    - <script src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script>
+    - <script src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script>
+    # 将 custom.js 放在 Vue 和 ElementUI 之后
+    - <script defer src="/js/custom.js"></script>
+    # 位置欢迎
+    - <script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script> # jQuery
+    - <script async data-pjax src="/js/txmap.js"></script> # 腾讯位置API
+    #分享按钮
+    # - <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    # - <script defer src="/js/emoji.js"></script>
+    # # cat
+    # - <script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script>
+    # - <script defer data-pjax src="/js/cat.js"></script>
     # - <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
     # - <script src="xxxx"></script>
 

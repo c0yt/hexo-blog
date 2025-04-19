@@ -1,10 +1,14 @@
 /* waline 评论系统关键部分，不然会出现提示框均在同一位置的问题 */
 
 .wl-header {
-    overflow: visible;
+    overflow: visible !important;  /* 强制显示溢出内容 */
+    position: relative;      /* 添加相对定位 */
+    z-index: 1;             /* 设置基础层级 */
 }
 .wl-header-item {
     position: relative;
+    overflow: visible !important;
+    margin-bottom: 5px;      /* 增加底部间距 */
 }
 
 /* end */
@@ -21,46 +25,108 @@
     content: '可以通过昵称访问您的网站🔗 ~';
 }
 
-.wl-header-item:focus-within::before{
+/* 移除hover触发，只保留focus触发 */
+.wl-header-item:focus-within::before {
     display: block;
+    animation: float-in 0.3s ease-in-out;
+}
+
+/* 确保hover时不显示 */
+.wl-header-item:hover::before {
+    display: none;
 }
 
 /* 主内容区 */
 .wl-header-item::before {
     display: none;             /* 先隐藏起来 */
     position: absolute;        /* 绝对定位 */
-    top: -31px;                /* 向上移动60像素 */
+    top: -45px;                /* 增加向上偏移，避免遮挡 */
     white-space: nowrap;       /* 文字强制不换行，防止left:50%导致的文字换行 */
     border-radius: 10px;       /* 圆角 */
     left: 50%;                 /* 距离左边50% */
     transform: translate(-50%);/* 然后再向左边挪动自身的一半，即可实现居中 */
     /* 填充 */
-    padding: 0px 18px;
+    padding: 8px 18px;         /* 增加上下内边距 */
     background: #60c1e7;
     color: #fff;
+    z-index: 99999;            /* 提高层级到最顶层 */
+    pointer-events: none;      /* 防止提示框影响鼠标事件 */
 }
+
+/* 添加浮入动画 */
+@keyframes float-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 10px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
 /* 评论区图片悬停效果 */
 .wl-content img {
     transition: all 0.3s;
     cursor: zoom-in;
-    border-radius: 3px;  /* 添加圆角 */
+    border-radius: 8px;  /* 修改圆角 */
     margin: 5px 0;      /* 添加上下间距 */
+    max-width: 100%;    /* 添加最大宽度 */
+    height: auto;       /* 添加高度自动 */
 }
   
 .wl-content img:hover {
     transform: scale(1.03);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-/* .wl-editor {
-    background-image: url(https://blog.fzero.me/img/comment.gif); ;
-    background-size: 10%;
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    background-color: rgba(255, 255, 255, 0);
-    resize: vertical
+
+/* 评论区表情反应样式 */
+.wl-reaction {
+    margin-bottom: 2rem;
 }
-.wl-editor:focus{
-    background-position-x: 800px;
-    background-position-y: 1000px;
-    transition: all 0.2s ease-in-out 0s;
-} */
+
+.wl-reaction-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+.wl-reaction-item {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.wl-reaction-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.wl-reaction-img {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 4px;
+}
+
+.wl-reaction-votes {
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+}
+
+/* 暗色模式适配 */
+[data-theme='dark'] .wl-reaction-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .wl-reaction-votes {
+    color: #999;
+}
+
+.wl-panel {
+    position: relative;
+    z-index: 1;
+}

@@ -2084,6 +2084,11 @@
     "hexo-front-matter" "^1.0.0"
     "hexo-fs" "^3.1.0"
 
+"hexo-blog-encrypt@^3.1.9":
+  "integrity" "sha512-dzuZiW5mD8t1FOhJXqc+IgV1Tc45YtatJb/w8k4PyT9McQxsROQXsBw+zbDembzuqMnbnkCeT2SapZ/r9AgAcw=="
+  "resolved" "https://registry.npmmirror.com/hexo-blog-encrypt/-/hexo-blog-encrypt-3.1.9.tgz"
+  "version" "3.1.9"
+
 "hexo-butterfly-envelope@^1.0.15":
   "integrity" "sha512-Z12iYDhrrJkARSvCIYTVRPrlipLE9o5Zeh2kozj/MbLz5tcQmfr62w+qu+hOJh2XiZucAyyoUyZq5faKP4YD4A=="
   "resolved" "https://registry.npmmirror.com/hexo-butterfly-envelope/-/hexo-butterfly-envelope-1.0.15.tgz"
