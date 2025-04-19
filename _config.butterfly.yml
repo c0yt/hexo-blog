@@ -31,7 +31,11 @@ menu:
   碎碎念: /think/ || iconfont icon-dongtai
   # 时光机: /timeline/ || fa-time
   留言板: /comment/index.html || iconfont icon-comments
-  关于: /about/ || iconfont icon-guanyu
+  关于 || iconfont icon-guanyu:
+    关于本站: /about/ || iconfont icon-caidanguanyuwo
+    统计数据: https://monitor.fzero.me/share/VVIdWckqGpg2mneO/blog.fzero.me || iconfont icon-umami
+    站点状态: https://status.fzero.me/ || iconfont icon-zhuangtai
+
   # Home: / || fas fa-home
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
