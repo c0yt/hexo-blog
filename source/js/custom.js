@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // 复制成功通知（防抖）
       showCopyNotify: debounce(function() {
         this.$notify({
-          title: "✂️ 复制成功！",
-          message: "既然你诚心诚意地复制了，我就大发慈悲告诉你，转载要记得加上原文链接哦！",
+          title: "复制成功！😋",
+          message: "转载要记得加上原文链接哦 ~",
           position: "top-right",
           offset: 50,
           showClose: true,
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
       showWelcome: debounce(function() {
         if (!this.welcomeShown) {
           this.$notify({
-            title: "🎉 你来啦！",
-            message: "欢迎光临寒舍，茶已备好，让我们一起饮茶学习吧！",
+            title: "欢迎光临！😄",
+            message: "茶已备好，让我们一起饮茶吧！",
             position: "top-right",
             offset: 50,
             showClose: true,
@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
       showDebugWarning: debounce(function() {
         const messages = [
           "别看了别看了，这里啥都没有 🙈",
-          "你想看源码？问问神奇海螺吧 🐚",
           "再看就要警告第" + this.debuggerCount + "次了！",
           "你是不是想扒我站？现在是不是很内疚？",
           "这么热爱学习，不如给本站打赏点饮料钱？",
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         this.debuggerCount++;
         this.$notify({
-          title: "🕵️‍♂️ 被发现啦！",
+          title: "Hacker！！被发现啦！👀",
           message: messages[this.debuggerCount % messages.length],
           position: "top-right",
           offset: 50,
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         this.viewSourceCount++;
         this.$notify({
-          title: "🕵️‍♂️ 被发现啦！",
+          title: "Hacker！！被发现啦！👀",
           message: messages[this.viewSourceCount % messages.length],
           position: "top-right",
           offset: 50,

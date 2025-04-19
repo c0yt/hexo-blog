@@ -1100,6 +1100,8 @@ inject:
     # 位置欢迎
     - <script async data-pjax src="/js/txmap.js"></script> # 腾讯位置API
     - <script async src="/js/fps.js"></script> # 帧率检测
+    # umami监控
+    - <script defer src="https://monitor.fzero.me/script.js" data-website-id="9efac8da-77f7-462b-bed8-091f0a641149"></script>
     #分享按钮
     # - <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
     # - <script defer src="/js/emoji.js"></script>
