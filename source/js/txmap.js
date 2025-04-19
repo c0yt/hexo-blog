@@ -1,18 +1,36 @@
-// 添加一个显示加载状态的函数
+// 添加全局变量声明
+let ipLoacation = null;
+
+// 添加显示加载状态的函数
 function showLoading() {
     try {
         document.getElementById("welcome-info").innerHTML = `
             <div class="loading-box">
                 <b><center>
-                    <i class="fas fa-spinner fa-spin"></i> 正在加载中...
+                    <span class="loading-animation">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                        正在加载欢迎信息...
+                    </span>
                 </center></b>
             </div>`;
     } catch (err) {
         console.log("无法显示加载状态");
     }
 }
-
-// 修改 Ajax 请求部分
+// 添加错误提示函数
+function showError() {
+    try {
+        document.getElementById("welcome-info").innerHTML = `
+            <div class="loading-box">
+                <b><center>
+                    <i class="fas fa-exclamation-circle"></i> 位置获取失败，请刷新重试
+                </center></b>
+            </div>`;
+    } catch (err) {
+        console.log("无法显示错误状态");
+    }
+}
+//get请求
 $.ajax({
     type: 'get',
     url: 'https://apis.map.qq.com/ws/location/v1/ip',
@@ -21,24 +39,22 @@ $.ajax({
         output: 'jsonp',
     },
     dataType: 'jsonp',
-    beforeSend: function() {
-        showLoading(); // 请求发送前显示加载状态
-    },
     success: function (res) {
-        ipLoacation = res;
-        showWelcome();
-    },
-    error: function() {
-        // 请求失败时显示错误信息
-        try {
-            document.getElementById("welcome-info").innerHTML = 
-                `<b><center>🎉 欢迎信息 🎉</center>&emsp;&emsp;<span style="color:var(--theme-color)">抱歉，获取位置信息失败了 😢</span></b>`;
-        } catch (err) {
-            console.log("无法显示错误状态");
+        if (res.status === 0) {  // 检查请求是否成功
+            ipLoacation = res;
+            showWelcome();
+        } else {
+            console.error('位置信息获取失败:', res.message);
+            showError();
         }
-    }
-});
-
+    },
+    error: function (xhr, status, error) {
+        console.error('请求失败:', status, error);
+        showError();
+    },
+    timeout: 5000  // 设置5秒超时
+}
+)
 function getDistance(e1, n1, e2, n2) {
     const R = 6371
     const { sin, cos, asin, PI, hypot } = Math
@@ -56,10 +72,6 @@ function getDistance(e1, n1, e2, n2) {
 }
 
 function showWelcome() {
-    if (!ipLoacation || !ipLoacation.result || !ipLoacation.result.location) {
-        showLoading();
-        return;
-    }
 
     let dist = getDistance(113.34499552, 23.15537143, ipLoacation.result.location.lng, ipLoacation.result.location.lat); //这里换成自己的经纬度
     let pos = ipLoacation.result.ad_info.nation;
@@ -247,11 +259,11 @@ function showWelcome() {
     try {
         //自定义文本和需要放的位置
         document.getElementById("welcome-info").innerHTML =
-            `<b><center>🎉 欢迎信息 🎉</center>&emsp;&emsp;欢迎来自 <span style="color:var(--theme-color)">${pos}</span> 的小伙伴，${timeChange}您现在距离站长约 <span style="color:var(--theme-color)">${dist}</span> 公里，当前的IP地址为： <span style="color:var(--theme-color)">${ip}</span>， ${posdesc}</b>`;
+            `<b><center>欢迎信息</center>&emsp;&emsp;欢迎来自 <span style="color:var(--theme-color)">${pos}</span> 的小伙伴，${timeChange}您现在距离站长约 <span style="color:var(--theme-color)">${dist}</span> 公里，当前的IP地址为： <span style="color:var(--theme-color)">${ip}</span>， ${posdesc}</b>`;
     } catch (err) {
         // console.log("Pjax无法获取#welcome-info元素🙄🙄🙄")
     }
 }
-// window.onload = showWelcome;
+window.onload = showWelcome;
 // 如果使用了pjax在加上下面这行代码
 // document.addEventListener('pjax:complete', showWelcome);

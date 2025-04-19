@@ -278,6 +278,27 @@ h6::before {
   animation: welcome-loading 1.4s infinite;
 }
 
+/* 加载状态样式 */
+.loading-box {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color);
+}
+
+.loading-box i {
+    margin-right: 8px;
+}
+
+.loading-box .fa-spinner {
+    color: var(--theme-color);
+}
+
+.loading-box .fa-exclamation-circle {
+    color: #f56c6c;
+}
+
 /* 帧率检测 */
 #fps {
   position: fixed;
