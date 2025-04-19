@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showDebugWarning: debounce(function() {
         const messages = [
           "别看了别看了，这里啥都没有 🙈",
-          "再看就要警告第" + this.debuggerCount + "次了！",
+          "再看就要警告第" + (this.debuggerCount + 1) + "次了！",
           "你是不是想扒我站？现在是不是很内疚？",
           "这么热爱学习，不如给本站打赏点饮料钱？",
           "你就这么想看我的源码吗？那给你看看也不是不行啦~"

@@ -282,16 +282,19 @@ h6::before {
   color: var(--theme-color);
   font-size: 1.5rem;
   margin-bottom: 8px;
-  animation: welcome-icon-bounce 1s ease-in-out infinite;
+  animation: welcome-icon-bounce 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
 }
 
-/* 图标跳动动画 */
+/* 优化的图标跳动动画 */
 @keyframes welcome-icon-bounce {
-  0%, 100% {
-      transform: translateY(0);
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
   }
-  50% {
-      transform: translateY(-3px);
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
   }
 }
 
