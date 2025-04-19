@@ -143,7 +143,7 @@ post_meta:
     label: true
   post:
     # Choose: left / center
-    position: left
+    position: center
     # Choose: created / updated / both
     date_type: both
     # Choose: date / relative
@@ -1072,6 +1072,7 @@ inject:
     - <link rel="stylesheet" href="https://ai.tianli0.top/static/public/tianli_gpt.min.css">
     # 引入Vue通知
     - <link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"> # 引入组件库(f12)
+    - <span id="fps"></span> # 帧率检测
     # 引入Fancybox样式
     # - <link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css">
     # - <link rel="stylesheet" href="/xxx.css">
@@ -1098,6 +1099,7 @@ inject:
     # 位置欢迎
     - <script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script> # jQuery
     - <script async data-pjax src="/js/txmap.js"></script> # 腾讯位置API
+    - <script async src="/js/fps.js"></script> # 帧率检测
     #分享按钮
     # - <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
     # - <script defer src="/js/emoji.js"></script>

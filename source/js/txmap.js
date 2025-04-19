@@ -1,8 +1,12 @@
 // 添加一个显示加载状态的函数
 function showLoading() {
     try {
-        document.getElementById("welcome-info").innerHTML = 
-            `<b><center>🎉 欢迎信息 🎉</center>&emsp;&emsp;<span style="color:var(--theme-color)">正在获取位置信息...</span></b>`;
+        document.getElementById("welcome-info").innerHTML = `
+            <div class="loading-box">
+                <b><center>
+                    <i class="fas fa-spinner fa-spin"></i> 正在加载中...
+                </center></b>
+            </div>`;
     } catch (err) {
         console.log("无法显示加载状态");
     }

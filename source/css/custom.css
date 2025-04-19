@@ -212,23 +212,17 @@ h6::before {
     background: #212121;
   }
 
-/* 欢迎信息卡片 */
+/* 欢迎信息卡片统一样式 */
 #welcome-info {
   position: relative;
+  min-height: 100px; /* 添加最小高度确保大小一致 */
   padding: 20px 24px;
-  border-radius: 12px;
-  background: var(--card-bg);
-  box-shadow: var(--card-box-shadow);
-  border: var(--style-border);
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  
-  /* 毛玻璃效果 */
-  backdrop-filter: var(--backdrop-filter);
-  -webkit-backdrop-filter: var(--backdrop-filter);
-  
-  /* 渐变背景 */
+  margin-bottom: 20px;
   background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 25px;
+  border: var(--border-style);
+  transition: all 0.3s ease-in-out;
   
   /* 文字样式 */
   color: var(--font-color);
@@ -238,8 +232,7 @@ h6::before {
 
 /* 暗色模式适配 */
 [data-theme="dark"] #welcome-info {
-  background: var(--card-bg);
-  border: var(--style-border);
+  background: var(--trans-dark);
   color: var(--heo-fontcolor);
 }
 
@@ -260,8 +253,48 @@ h6::before {
   text-decoration: none;
 }
 
+/* 欢迎信息加载状态 */
+#welcome-info .loading-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+}
+
 /* 欢迎信息内部强调文本 */
 #welcome-info span {
   color: var(--heo-theme);
   font-weight: bold;
+}
+
+/* 加载动画 */
+@keyframes welcome-loading {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+#welcome-info .welcome-loading {
+  animation: welcome-loading 1.4s infinite;
+}
+
+/* 帧率检测 */
+#fps {
+  position: fixed;
+  /* 指定位置 */
+  left: 10px;
+  bottom: 10px;
+  z-index: 1919810;
+}
+[data-theme="light"] #fps {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: var(--backdrop-filter);
+  padding: 4px;
+  border-radius: 4px;
+}
+[data-theme="dark"] #fps {
+  background-color: rgba(0, 0, 0, 0.72);
+  backdrop-filter: var(--backdrop-filter);
+  padding: 4px;
+  border-radius: 4px;
 }
