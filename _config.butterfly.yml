@@ -1096,7 +1096,7 @@ inject:
     - <script src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script>
     - <script src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script>
     # 将 custom.js 放在 Vue 和 ElementUI 之后
-    # - <script defer src="/js/custom.js"></script>
+    - <script defer src="/js/custom.js"></script>
     # 位置欢迎
     - <script async data-pjax src="/js/txmap.js"></script> # 腾讯位置API
     - <script async src="/js/fps.js"></script> # 帧率检测
