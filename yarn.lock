@@ -2367,10 +2367,10 @@
     "prismjs" "^1.29.0"
     "strip-indent" "^3.0.0"
 
-"hexo-wordcount@^6.0.1":
-  "integrity" "sha512-tbo2P9xRWEKQmRf7+XuPjx9It1MnaE26nA+EEb2DN39gK1x+26W7Nm4Iyp4AugQjBWYYDx7OLn4gp1WFxQpQew=="
-  "resolved" "https://registry.npmmirror.com/hexo-wordcount/-/hexo-wordcount-6.0.1.tgz"
-  "version" "6.0.1"
+"hexo-wordcount-fomal@^1.0.0":
+  "integrity" "sha512-NtN0JrJz+UTkbA9DUAIfqIYYwnG3gARcfEKKFbkPgA2ZfB07pmXS/902YK2wAbV7YJN58oBZi0bnR1hbmqQsvA=="
+  "resolved" "https://registry.npmmirror.com/hexo-wordcount-fomal/-/hexo-wordcount-fomal-1.0.0.tgz"
+  "version" "1.0.0"
 
 "hexo@^5.0.0 || ^6.0.0 || ^7.0.0", "hexo@^7.3.0":
   "integrity" "sha512-dOe8mzBKrvjubW5oBmyhcnQDpC+M2xmAMLae5K+o+SkHxyvAhShkS2VQZoTsOLIJKY6xilv7dzCjCvE7ol/NHQ=="
