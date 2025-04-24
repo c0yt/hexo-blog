@@ -20,9 +20,12 @@ script.
         path: isShuoshuo ? path : (option && option.path) || path,  // 添加逗号
         imageUploader: (file) => {
           if (!file) {
-            Snackbar.show({
-              text: '请选择要上传的图片',
-              backgroundColor: '#ffa099',
+            new Vue().$notify({
+              title: '上传提示',
+              message: '请选择要上传的图片',
+              type: 'warning',
+              position: 'top-right',
+              offset: 50,
               duration: 3000
             });
             return Promise.reject('No file selected');
@@ -31,12 +34,15 @@ script.
           // 检查文件大小
           const maxSize = 1 * 1024 * 1024; // 1MB
           if (file.size > maxSize) {
-            Snackbar.show({
-              text: '图片大小不能超过 1MB',
-              backgroundColor: '#ffa099',
+            new Vue().$notify({
+              title: '上传提示',
+              message: '图片大小不能超过 1MB',
+              type: 'error',
+              position: 'top-right',
+              offset: 50,
               duration: 3000
             });
-            return Promise.reject();  // 不传入错误信息，避免显示undefined
+            return Promise.reject();
           }
 
           let formData = new FormData();
@@ -50,12 +56,15 @@ script.
             .then((resp) => resp.json())
             .then((resp) => resp.data.url)
             .catch(() => {
-              Snackbar.show({
-                text: '图片上传失败，请重试',
-                backgroundColor: '#ffa099',
+              new Vue().$notify({
+                title: '上传提示',
+                message: '图片上传失败，请重试',
+                type: 'error',
+                position: 'top-right',
+                offset: 50,
                 duration: 3000
               });
-              return Promise.reject();  // 不传入错误信息
+              return Promise.reject();
             });
         }
       })
