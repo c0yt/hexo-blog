@@ -19,20 +19,6 @@ script.
         ...option,
         path: isShuoshuo ? path : (option && option.path) || path,  // 添加逗号
         imageUploader: (file) => {
-          // 检查文件类型
-          const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-          if (!allowedTypes.includes(file.type)) {
-            new Vue().$notify({
-              title: '上传提示',
-              message: '只支持 jpg/png/webp 格式的图片',
-              type: 'warning',
-              position: 'top-right',
-              offset: 50,
-              duration: 3000
-            });
-            return Promise.reject(');
-          }
-
           if (!file) {
             new Vue().$notify({
               title: '上传提示',
@@ -42,7 +28,7 @@ script.
               offset: 50,
               duration: 3000
             });
-            return Promise.reject();
+            return Promise.reject('No file selected');
           }
 
           // 检查文件大小
