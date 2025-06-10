@@ -18,47 +18,50 @@ date: 2025-06-09 11:18:25
 ---
 
 ## 项目概述
-本项目旨在通过 GitLab + Jenkins + Ansible 实现 Hexo 博客的一键自动化部署，并使用 Nginx + Keepalived 实现多节点高可用架构，提升部署效率和服务稳定性。
+本项目旨在通过 `GitLab + Jenkins + Ansible` 实现 Hexo 博客的一键自动化部署，并使用 `Nginx + Keepalived` 实现多节点高可用架构，提升部署效率和服务稳定性。
 
 ## 架构设计图  
-```plsql
-+-------------+          Git Push         +------------+
-| Developer   |  ---------------------->  |  GitLab    |
-+-------------+                           +------------+
-                                                |
-                                                | Webhook
-                                                v
-                                           +-----------+
-                                           |  Jenkins  |
-                                           +-----------+
-                                                |
-                                           调用 Ansible
-                                                |
-                                                v
-                                     +---------------------+
-                                     |  Web Server Cluster |
-                                     |  (Nginx + Hexo)     |
-                                     +---------------------+
-                                        |              |
-                                  Keepalived        Keepalived
-                                     |                  |
-                                +--------+        +--------+
-                                | Master |        | Backup |
-                                +--------+        +--------+
-
+```mermaid
+flowchart TB
+    Developer[开发者] -->|Git Push| GitLab[GitLab]
+    GitLab -->|Webhook| Jenkins[Jenkins]
+    Jenkins -->|调用 Ansible| Cluster[Web Server Cluster<br>Nginx + Hexo]
+    Cluster --> Master[Master]
+    Cluster --> Backup[Backup]
+    Master -->|Keepalived| VIP[VIP]
+    Backup -->|Keepalived| VIP
+    
+    %% 样式定义
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef server fill:#9cf,stroke:#333,stroke-width:2px;
+    classDef cluster fill:#fcf,stroke:#333,stroke-width:2px;
+    
+    %% 应用样式
+    class GitLab,Jenkins,Master,Backup server;
+    class Cluster cluster;
 ```
 
 ## 环境准备
-### 1. 主机规划
+### 主机规划
 | 主机名 | IP | 环境 | 角色 |
 | --- | --- | --- | --- |
-| gitlab | 192.168.100.116 | Ubuntu22.04 LTS / 4h4g | GitLab 18.0 |
-| jenkins | 192.168.100.114 | Ubuntu22.04LTS / 2h2g | Jenkins 2.504.2 + Ansible |
+| Gitlab | 192.168.100.116 | Ubuntu22.04 LTS / 4h4g | GitLab 18.0 |
+| Jenkins | 192.168.100.114 | Ubuntu22.04LTS / 2h2g | Jenkins 2.504.2 + Ansible |
 | web01 | 192.168.100.110 | Centos7.9 / 1h1g | Nginx + Keepalived（主） |
 | web02 | 192.168.100.112 | Centos7.9 /1h1g | Nginx + Keepalived（备） |
+| VIP | 192.168.100.120 | - | 虚拟IP地址 |
 
+### 目录规划
+
+| 服务       | 目录              | 说明               |
+| ---------- | ----------------- | ------------------ |
+| Hexo       | `/www/blog/`      | 静态网站根目录     |
+| Nginx      | `/etc/nginx/`     | Nginx安装目录      |
+| Keepalived | `/etc/keepalived` | Keepalived安装目录 |
+| Ansible    | `/etc/ansible/`   | Ansible工作目录    |
 
 ## 部署步骤
+
 ### 搭建 GitLab 仓库
 <font style="color:rgb(35, 39, 47);">信任 GitLab 的 GPG 公钥</font>
 
@@ -83,7 +86,7 @@ sudo apt-get install gitlab-ce
 > 镜像站参考配置：[https://help.mirrors.cernet.edu.cn/gitlab-ce/](https://help.mirrors.cernet.edu.cn/gitlab-ce/)
 >
 
-编辑配置文件/etc/gitlab/gitlab.rb，默认80端口未被占用可不修改，修改<font style="color:rgb(82, 82, 91);background-color:rgb(229, 231, 235);">external_url，nginx['listen_port']</font>
+编辑配置文件`/etc/gitlab/gitlab.rb`，默认80端口未被占用可不修改，修改<font style="color:rgb(82, 82, 91);background-color:rgb(229, 231, 235);">external_url，nginx['listen_port']</font>
 
 ![](https://cdn.fzero.dpdns.org/img/2025/06/1a315241f5dd9ef60362041d138c279c.png)
 
@@ -220,7 +223,7 @@ ansible/
 ```
 
 #### 配置主机清单
-<font style="color:rgb(52, 73, 94);">在</font>`<font style="color:rgb(233, 105, 0);background-color:rgb(248, 248, 248);">inventory/hosts</font>`<font style="color:rgb(52, 73, 94);">文件中配置Web服务器组：</font>
+<font style="color:rgb(52, 73, 94);">在`inventory/hosts`文件中配置Web服务器组：</font>
 
 ```yaml
 [web]
@@ -241,7 +244,7 @@ ansible_connection=ssh
 4. <font style="color:rgb(52, 73, 94);">启动并启用Nginx服务</font>
 5. <font style="color:rgb(52, 73, 94);">配置防火墙规则</font>
 
-编辑roles/nginx/handlers/main.yml
+编辑`roles/nginx/handlers/main.yml`
 
 ```yaml
 ---
@@ -256,7 +259,7 @@ ansible_connection=ssh
     state: reloaded 
 ```
 
-编辑roles/nginx/tasks/main.yml
+编辑`roles/nginx/tasks/main.yml`
 
 ```yaml
 ---
@@ -318,7 +321,7 @@ ansible_connection=ssh
 
 ```
 
-配置roles/nginx/templates/default.conf.j2
+配置`roles/nginx/templates/default.conf.j2`
 
 ```yaml
 server {
@@ -333,7 +336,7 @@ server {
 } 
 ```
 
-配置roles/nginx/templates/nginx.conf.j2
+配置`roles/nginx/templates/nginx.conf.j2`
 
 ```yaml
 user  nginx;
@@ -370,7 +373,7 @@ http {
 4. <font style="color:rgb(52, 73, 94);">配置虚拟IP</font>
 5. <font style="color:rgb(52, 73, 94);">启动并启用Keepalived服务</font>
 
-编辑roles/keepalived/handlers/main.yml
+编辑`roles/keepalived/handlers/main.yml`
 
 ```yaml
 ---
@@ -380,7 +383,7 @@ http {
     state: restarted 
 ```
 
-编辑roles/keepalived/tasks/main.yml
+编辑`roles/keepalived/tasks/main.yml`
 
 ```yaml
 ---
@@ -421,7 +424,7 @@ http {
     state: started 
 ```
 
-编辑roles/keepalived/templates/check_nginx.sh.j2
+编辑`roles/keepalived/templates/check_nginx.sh.j2`
 
 ```yaml
 #!/bin/bash
@@ -440,7 +443,7 @@ if [ $? -ne 0 ]; then
 fi 
 ```
 
-编辑roles/keepalived/templates/keepalived.conf.j2
+编辑`roles/keepalived/templates/keepalived.conf.j2`
 
 ```yaml
 global_defs {
@@ -482,7 +485,7 @@ vrrp_instance VI_1 {
 ```
 
 #### 编写部署Hexo博客 playbook
-编辑deploy_hexo.yml
+编辑`deploy_hexo.yml`
 
 ```yaml
 ---
