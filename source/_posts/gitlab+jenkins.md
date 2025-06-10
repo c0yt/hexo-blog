@@ -166,7 +166,7 @@ yum install -y epel-release
 yum install -y ansible
 ```
 
-	![](https://cdn.fzero.dpdns.org/img/2025/06/d225716e0f9768e6ae66c93c1839287c.png)
+![](https://cdn.fzero.dpdns.org/img/2025/06/d225716e0f9768e6ae66c93c1839287c.png)
 
 ### 配置 Anisble
 #### 配置SSH免密连接
