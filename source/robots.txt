@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blog.fzero.me/sitemap.xml
+Sitemap: https://blog.fzero.me/baidusitemap.xml
