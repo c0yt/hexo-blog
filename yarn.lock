@@ -2603,6 +2603,13 @@
     "hexo-front-matter" "^1.0.0"
     "hexo-fs" "^3.1.0"
 
+"hexo-baidu-url-submit@^0.0.6":
+  "integrity" "sha512-0jDyIuw5B2Muqsjcf5Xxo1PNjxClPHP14FpB0amEAIr4wUdxk5zahImvOhkZwR9GrBhWKAPdjzmWS/xIMjzfrw=="
+  "resolved" "https://registry.npmmirror.com/hexo-baidu-url-submit/-/hexo-baidu-url-submit-0.0.6.tgz"
+  "version" "0.0.6"
+  dependencies:
+    "xmlhttprequest" "^1.8.0"
+
 "hexo-blog-encrypt@^3.1.9":
   "integrity" "sha512-dzuZiW5mD8t1FOhJXqc+IgV1Tc45YtatJb/w8k4PyT9McQxsROQXsBw+zbDembzuqMnbnkCeT2SapZ/r9AgAcw=="
   "resolved" "https://registry.npmmirror.com/hexo-blog-encrypt/-/hexo-blog-encrypt-3.1.9.tgz"
@@ -5943,6 +5950,11 @@
   "integrity" "sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw=="
   "resolved" "https://registry.npmmirror.com/xmlchars/-/xmlchars-2.2.0.tgz"
   "version" "2.2.0"
+
+"xmlhttprequest@^1.8.0":
+  "integrity" "sha512-58Im/U0mlVBLM38NdZjHyhuMtCqa61469k2YP/AaPbvCoV9aQGUpbJBj1QRm2ytRiVQBD/fsw7L2bJGDVQswBA=="
+  "resolved" "https://registry.npmmirror.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz"
+  "version" "1.8.0"
 
 "yallist@^2.1.2":
   "integrity" "sha512-ncTzHV7NvsQZkYe1DW7cbDLm0YpzHmZF5r/iyP3ZnQtMiJ+pjzisCiMNI+Sj+xQF5pXhSHxSB3uDbsBTzY/c2A=="
