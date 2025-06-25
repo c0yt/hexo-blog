@@ -5,7 +5,6 @@ keywords: MySQL,笔记,运维
 author: 'null'
 cover: https://cdn.fzero.dpdns.org/img/2025/06/c6591c9446bc8a8103e1e83dbdadd3d1.png
 category:
-  - Linux
   - MySQL
 tag:
   - MySQL

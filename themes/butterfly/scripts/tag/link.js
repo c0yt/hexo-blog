@@ -16,7 +16,7 @@ function link(args) {
         favicon = (args[2] ? `<img src="${args[2]}" class="no-lightbox">` : defaultIcon).trim(),
         desc = (args[3] || '').trim()
 
-    return `<a href="${url}" ${url.includes('http')?'target="_blank"':''} title="${title}" referrerPolicy="no-referrer" class="link_card"><div class="link_icon">${favicon}</div><div class="link_content"><div class="link_title">${title}</div>${desc?`<div class="link_desc">${desc}</div>`:''}</div></a>`
+    return `<div><a href="${url}" ${url.includes('http')?'target="_blank"':''} title="${title}" referrerPolicy="no-referrer" class="link_card"><div class="link_icon">${favicon}</div><div class="link_content"><div class="link_title">${title}</div>${desc?`<div class="link_desc">${desc}</div>`:''}</div></a></div>`
 }
 
 hexo.extend.tag.register('link', link, { ends: false })

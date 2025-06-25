@@ -1,6 +1,6 @@
 ---
 title: K8s集群搭建
-description: K8s集群搭建
+description: 本教程将记录通过手动部署K8s集群，掌握 K8s的基础架构、安装流程及常用组件配置
 keywords: 'K8s,笔记,运维'
 author: 'null'
 cover: 'https://kubernetes.io/images/kubernetes.png'
@@ -19,7 +19,7 @@ date: 2025-06-25 11:28:33
 
 ## 前言
 
-&nbsp;&nbsp;&nbsp;&nbsp;本项目将记录通过手动部署K8s集群，掌握 K8s的基础架构、安装流程及常用组件配置。Kubernetes 作为当前主流的容器编排平台，广泛应用于容器化应用的自动化部署、扩展和管理。
+&nbsp;&nbsp;&nbsp;&nbsp;本教程将记录通过手动部署K8s集群，掌握 K8s的基础架构、安装流程及常用组件配置。Kubernetes 作为当前主流的容器编排平台，广泛应用于容器化应用的自动化部署、扩展和管理。
 &nbsp;&nbsp;&nbsp;&nbsp;在实际操作中，我们将在 `CentOS 7.9` 环境下，按照既定的主机规划和软件版本要求，逐步完成 master 主节点和多个从节点的部署，并通过配置网络、安装必要组件等步骤，实现集群的全面运行。
 &nbsp;&nbsp;&nbsp;&nbsp;随着 Kubernetes 的不断演进，容器技术也在持续发展。在2021年底发布的 Kubernetes 1.24 版本中，Kubernetes 正式移除了对 Docker 作为容器运行时的支持。为方便起见，部分功能可能仍用Docker的方案，所以本教程将支持 `Docker` 和 `containerd` 的详细方案分别列出，使用标签或章节的方式进行区分。
 
@@ -50,7 +50,7 @@ date: 2025-06-25 11:28:33
 <!-- tab 支持containerd(适用于1.24.x后) -->
 
 | 名称                      | 版本号 |
-| ------------------------- | ------ |
+| :------------------------- | ------ |
 | kubernetes                | 1.26.0 |
 | containerd                | 1.6.33 |
 | kubeadm、kubelet、kubectl | 1.26.0 |
@@ -465,12 +465,10 @@ kubeadm init \
 > --service-cidr：Service 虚拟 IP 地址段，初始化后不能修改
 
 更多参数说明可参考kubeadm的官网文档👇
-
 {% link https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/kubeadm-init/,kubeadm init | Kubernetes,https://kubernetes.io/images/kubernetes.png,kubeadm init相关参数介绍 %}
-
+如果如下图所示，则初始化成功
 ![](https://cdn.fzero.dpdns.org/img/2025/06/82a956129ce2f6761483893a40e36bca.png)
 
-如果如上图所示，则初始化成功
 
 root用户执行下方的命令，都要执行
 
@@ -560,6 +558,9 @@ kind: KubeProxyConfiguration
 mode: ipvs
 ```
 
+更多参数说明可参考kubeadm的官网文档👇
+{% link https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/kubeadm-init/,kubeadm init | Kubernetes,https://kubernetes.io/images/kubernetes.png,kubeadm init相关参数介绍 %}
+
 分发初始化配置文件，下载镜像
 
 ```bash
@@ -610,6 +611,7 @@ kubeadm join 192.168.100.120:6443 --token abcdef.0123456789abcdef \
 ```
 
 > 后面也可以使用`kubeadm token create --print-join-command`命令获取
+
 
 <!-- endtab -->
 
@@ -742,3 +744,11 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 {% link https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/,对 kubeadm 进行故障排查 | Kubernetes,https://kubernetes.io/images/kubernetes.png,kubeadm 故障排查手册 %}
 
+## 参考文章
+
+{% link https://blog.constrk.ip-ddns.com/2025/04/13/centos%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2k8s-containerd%E9%9B%86%E7%BE%A4/,centos虚拟机集群部署k8s+containerd集群,https://blog.constrk.ip-ddns.com/images/favicon.ico,centos虚拟机集群部署k8s+containerd集群 %}
+{% link https://www.cnblogs.com/hukey/p/17428157.html,部署k8s 集群1.26.0（containerd方式）-CSDN博客,https://blog.csdn.net/favicon.ico,k8s集群1.26.0部署 %}
+{% link https://blog.csdn.net/hedao0515/article/details/145700505/,k8s-1.26.0 + Containerd安装过程 - hukey - 博客园,https://cdn.fzero.dpdns.org/img/2025/06/66a7b83bb176d32bb16399ba1b9a41a5.ico,k8s-1.26.0 + Containerd %}
+{% link https://blog.csdn.net/m0_51720581/article/details/131153894,K8s安装部署--超级详细（无坑，v1.23）_kubernetes 1.23-CSDN博客,https://blog.csdn.net/favicon.ico,k8s集群1.23.6部署 %}
+{% link https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/,安装 kubeadm | Kubernetes,https://kubernetes.io/images/kubernetes.png,kubeadm安装教程 %}
+{% link https://kuboard.cn/install/v3/install.html,安装 Kubernetes 多集群管理工具 - Kuboard v3 | Kuboard,https://kuboard.cn/favicon.png,Kuboard面板安装教程 %}
