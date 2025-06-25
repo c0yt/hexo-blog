@@ -335,7 +335,7 @@ crictl images
 
 {% note info modern %}
 
-快照打卡点2 - Docker初始化完成
+快照打卡点2 - Docker/containerd初始化完成
 
 {% endnote %}
 
@@ -466,6 +466,7 @@ kubeadm init \
 
 更多参数说明可参考kubeadm的官网文档👇
 {% link https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/kubeadm-init/,kubeadm init | Kubernetes,https://kubernetes.io/images/kubernetes.png,kubeadm init相关参数介绍 %}
+
 如果如下图所示，则初始化成功
 ![](https://cdn.fzero.dpdns.org/img/2025/06/82a956129ce2f6761483893a40e36bca.png)
 
