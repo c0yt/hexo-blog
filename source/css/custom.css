@@ -1,3 +1,6 @@
+/* 导入说说美化样式 */
+@import url('./shuoshuo-enhanced.css');
+
 /* 鼠标样式 */
 #cursor {
     position: fixed;

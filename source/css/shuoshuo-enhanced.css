@@ -1,0 +1,420 @@
+/* 说说时间轴样式 */
+
+/* 时间轴容器 */
+#article-container {
+  position: relative;
+  padding-left: 0;
+}
+
+/* 时间轴主线 */
+#article-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg,
+    #e3e8f7 0%,
+    rgba(161, 162, 184, 0.3) 50%,
+    #e3e8f7 100%);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* 说说卡片容器 */
+#article-container .shuoshuo-item {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e3e8f7;
+  margin-bottom: 40px;
+  padding: 24px;
+  position: relative;
+  width: calc(50% - 40px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 16px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* 左右交替布局 - 使用计数器来正确处理交替 */
+#article-container {
+  counter-reset: shuoshuo-counter;
+}
+
+#article-container .shuoshuo-item {
+  counter-increment: shuoshuo-counter;
+}
+
+#article-container .shuoshuo-item:nth-of-type(odd) {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+#article-container .shuoshuo-item:nth-of-type(even) {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* 悬停效果 */
+#article-container .shuoshuo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 32px -3px rgba(0, 0, 0, 0.18);
+  border-color: #49b1f5;
+}
+
+/* 时间轴节点 */
+#article-container .shuoshuo-item::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  width: 12px;
+  height: 12px;
+  background: #363636;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 2px #e3e8f7;
+}
+
+/* 左侧卡片的节点 */
+#article-container .shuoshuo-item:nth-of-type(odd)::before {
+  right: -45px;
+}
+
+/* 右侧卡片的节点 */
+#article-container .shuoshuo-item:nth-of-type(even)::before {
+  left: -45px;
+}
+
+/* 悬停时节点效果 */
+#article-container .shuoshuo-item:hover::before {
+  background: #49b1f5;
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px rgba(73, 177, 245, 0.2);
+}
+
+/* 连接线 */
+#article-container .shuoshuo-item::after {
+  content: '';
+  position: absolute;
+  top: 36px;
+  width: 30px;
+  height: 2px;
+  background: #e3e8f7;
+  z-index: 1;
+}
+
+/* 左侧卡片的连接线 */
+#article-container .shuoshuo-item:nth-of-type(odd)::after {
+  right: -30px;
+}
+
+/* 右侧卡片的连接线 */
+#article-container .shuoshuo-item:nth-of-type(even)::after {
+  left: -30px;
+}
+
+/* 头部信息美化 */
+.shuoshuo-item-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+/* 头像美化 */
+.shuoshuo-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.shuoshuo-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.shuoshuo-item:hover .shuoshuo-avatar img {
+  transform: scale(1.05);
+}
+
+/* 用户信息美化 */
+.shuoshuo-info {
+  margin-left: 12px;
+  flex: 1;
+}
+
+.shuoshuo-author {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--anzhiyu-fontcolor, #363636);
+  margin-bottom: 2px;
+}
+
+.shuoshuo-date {
+  color: var(--anzhiyu-secondtext, rgba(60, 60, 67, 0.6));
+  font-size: 12px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* 内容区域美化 */
+.shuoshuo-content {
+  padding: 16px 0;
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--anzhiyu-fontcolor, #363636);
+  position: relative;
+}
+.shuoshuo-content .hbe-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* 底部区域美化 */
+.shuoshuo-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--anzhiyu-card-border, #e3e8f7);
+  margin-top: 8px;
+}
+
+.shuoshuo-footer.flex-between {
+  justify-content: space-between;
+}
+
+.shuoshuo-footer.flex-end {
+  justify-content: flex-end;
+}
+
+/* 标签美化 */
+/* .shuoshuo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+} */
+
+/* .shuoshuo-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: var(--anzhiyu-theme-op, rgba(73, 177, 245, 0.1));
+  color: var(--anzhiyu-theme, #49b1f5);
+  border: 1px solid var(--anzhiyu-theme-op, rgba(73, 177, 245, 0.2));
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.shuoshuo-tag::before {
+  content: '#';
+  margin-right: 2px;
+  opacity: 0.7;
+}
+
+.shuoshuo-tag:hover {
+  background: var(--anzhiyu-theme, #49b1f5);
+  color: white;
+  transform: translateY(-1px);
+} */
+
+/* 评论按钮美化 */
+/* .shuoshuo-comment-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--anzhiyu-theme-op, rgba(73, 177, 245, 0.1));
+  color: var(--anzhiyu-theme, #49b1f5);
+  border: 1px solid var(--anzhiyu-theme-op, rgba(73, 177, 245, 0.2));
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+} */
+
+/* .shuoshuo-comment-btn:hover {
+  background: var(--anzhiyu-theme, #49b1f5);
+  color: white;
+  transform: scale(1.05);
+} */
+
+.shuoshuo-comment-btn i {
+  font-size: 14px;
+}
+
+/* 响应式设计 - 移动端 */
+@media (max-width: 768px) {
+  /* 移动端隐藏时间轴主线 */
+  #article-container::before {
+    display: none;
+  }
+
+  /* 移动端卡片样式 */
+  #article-container .shuoshuo-item {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 20px;
+    padding: 16px;
+  }
+
+  /* 移动端隐藏节点和连接线 */
+  #article-container .shuoshuo-item::before,
+  #article-container .shuoshuo-item::after {
+    display: none;
+  }
+
+  .shuoshuo-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .shuoshuo-info {
+    margin-left: 10px;
+  }
+
+  .shuoshuo-author {
+    font-size: 13px;
+  }
+
+  .shuoshuo-date {
+    font-size: 11px;
+  }
+
+  .shuoshuo-content {
+    font-size: 13px;
+    padding: 12px 0;
+  }
+
+  .shuoshuo-tag {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .shuoshuo-comment-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .shuoshuo-comment-btn i {
+    font-size: 12px;
+  }
+}
+
+/* 年份分组标题样式 */
+.shuoshuo-year-title {
+  text-align: center;
+  margin: 50px 0 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.shuoshuo-year-title h2 {
+  display: inline-block;
+  background: #fff;
+  color: #363636;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid #e3e8f7;
+  margin: 0;
+  position: relative;
+  box-shadow: 0 2px 16px -3px rgba(0, 0, 0, 0.1);
+}
+
+.shuoshuo-year-title h2::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -80px;
+  width: 60px;
+  height: 2px;
+  background: #e3e8f7;
+  transform: translateY(-50%);
+}
+
+.shuoshuo-year-title h2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -80px;
+  width: 60px;
+  height: 2px;
+  background: #e3e8f7;
+  transform: translateY(-50%);
+}
+
+/* 月份分组标题样式 */
+.shuoshuo-month-title {
+  text-align: center;
+  margin: 25px 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.shuoshuo-month-title h3 {
+  display: inline-block;
+  background: #f8f9fa;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  margin: 0;
+  position: relative;
+}
+
+
+
+@media (max-width: 768px) {
+  .shuoshuo-year-title {
+    margin: 30px 0 20px;
+  }
+
+  .shuoshuo-year-title h2 {
+    font-size: 18px;
+    padding: 8px 16px;
+  }
+
+  .shuoshuo-year-title h2::before,
+  .shuoshuo-year-title h2::after {
+    display: none;
+  }
+
+  .shuoshuo-month-title {
+    margin: 20px 0 15px;
+  }
+
+  .shuoshuo-month-title h3 {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}

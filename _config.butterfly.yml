@@ -1077,6 +1077,7 @@ inject:
     # 引入Vue通知
     - <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.6/packages/theme-chalk/lib/index.css"> # 引入组件库(f12)
     - <span id="fps"></span> # 帧率检测
+    - <link rel="stylesheet" href="/css/shuoshuo-enhanced.css">
     # 引入Fancybox样式
     # - <link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css">
     # - <link rel="stylesheet" href="/xxx.css">

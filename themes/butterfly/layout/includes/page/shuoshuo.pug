@@ -8,6 +8,13 @@
 
 - page.toc = false
 
+//- 检查是否有加密的shuoshuo条目
+- let hasEncrypted = false
+if site.data.shuoshuo
+  each i in site.data.shuoshuo
+    if i.encrypted
+      - hasEncrypted = true
+
 #article-container
   if page.comments !== false && theme.comments.use
     - commentsJsLoad = true
@@ -165,24 +172,82 @@
       })()
   else
     if site.data.shuoshuo
-      each i in shuoshuoFN(site.data.shuoshuo, page)
-        .shuoshuo-item
-          .container
-            .shuoshuo-item-header
-              .shuoshuo-avatar
-                img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
-              .shuoshuo-info
-                .shuoshuo-author=i.author || config.author
-                time.shuoshuo-date(title=i.date)=i.date
-            .shuoshuo-content
-              !=markdown(i.content)
-            .shuoshuo-footer(class=i.tags && i.tags.length ? 'flex-between' : 'flex-end')
-              if i.tags
-                .shuoshuo-tags
-                  each tag in i.tags
-                    span.shuoshuo-tag=tag
-              if i.key && commentsJsLoad
-                .shuoshuo-comment-btn(onclick='addCommentToShuoshuo(event)')
-                  i.fa-solid.fa-comments
-          if i.key && commentsJsLoad
-            .shuoshuo-comment.no-comment(data-key=i.key)
+      - let shuoshuoList = shuoshuoFN(site.data.shuoshuo, page)
+      - let shuoshuoByYearMonth = {}
+
+      //- 按年月分组
+      each i in shuoshuoList
+        - let date = new Date(i.date)
+        - let year = date.getFullYear()
+        - let month = date.getMonth() + 1
+        - let yearMonth = year + '-' + (month < 10 ? '0' + month : month)
+        - if (!shuoshuoByYearMonth[yearMonth]) shuoshuoByYearMonth[yearMonth] = []
+        - shuoshuoByYearMonth[yearMonth].push(i)
+
+      //- 按年月倒序排列
+      - let yearMonths = Object.keys(shuoshuoByYearMonth).sort((a, b) => b.localeCompare(a))
+      - let currentYear = null
+
+      each yearMonth in yearMonths
+        - let [year, month] = yearMonth.split('-')
+        - let monthNames = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+        - let monthName = monthNames[parseInt(month) - 1]
+
+        //- 如果是新的年份，显示年份标题
+        if currentYear !== year
+          - currentYear = year
+          .shuoshuo-year-title
+            h2= year + ' 年'
+
+        //- 显示月份标题
+        .shuoshuo-month-title
+          h3= monthName
+
+        each i in shuoshuoByYearMonth[yearMonth]
+          .shuoshuo-item
+            .container
+              .shuoshuo-item-header
+                .shuoshuo-avatar
+                  img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
+                .shuoshuo-info
+                  .shuoshuo-author=i.author || config.author
+                  time.shuoshuo-date(title=i.date)=i.date
+              .shuoshuo-content
+                if i.encrypted
+                  - const encryptConfig = i.encrypt_config || {}
+                  - const theme = encryptConfig.theme || 'xray'
+                  - const uniqueId = 'shuoshuo-encrypt-' + i.key
+                  .hbe.hbe-container(id=uniqueId data-wpm=encryptConfig.wrong_pass_message data-whm=encryptConfig.wrong_hash_message)
+                    script(id="hbeData" type="hbeData" data-hmacdigest=i.hmac_digest)=i.encrypted_data
+                    .hbe.hbe-content
+                      .hbe.hbe-input(class='hbe-input-' + theme)
+                        input.hbe.hbe-input-field(class='hbe-input-field-' + theme type="password" id="hbePass")
+                        label.hbe.hbe-input-label(class='hbe-input-label-' + theme for="hbePass")
+                          span.hbe.hbe-input-label-content(class='hbe-input-label-content-' + theme)=encryptConfig.message
+                        if theme === 'xray'
+                          svg.hbe.hbe-graphic.hbe-graphic-xray(width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none")
+                            path(d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0")
+                            path(d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0")
+                else
+                  !=markdown(i.content)
+              if !i.encrypted
+                .shuoshuo-footer(class=i.tags && i.tags.length ? 'flex-between' : 'flex-end')
+                  if i.tags
+                    .shuoshuo-tags
+                      each tag in i.tags
+                        span.shuoshuo-tag=tag
+                  if i.key && commentsJsLoad
+                    .shuoshuo-comment-btn(onclick='addCommentToShuoshuo(event)')
+                      i.fa-solid.fa-comments
+            if i.key && commentsJsLoad && !i.encrypted
+              .shuoshuo-comment.no-comment(data-key=i.key)
+
+//- 如果有加密内容，引入相关资源
+if hasEncrypted
+  link(href=url_for('/css/hbe.style.css') rel="stylesheet" type="text/css")
+  script.
+    // 提供shuoshuo数据给解密脚本使用
+    window.shuoshuoData = {};
+    window.commentsJsLoad = #{commentsJsLoad || false};
+    !{site.data.shuoshuo ? site.data.shuoshuo.map(item => `window.shuoshuoData['${item.key}'] = ${JSON.stringify({key: item.key, tags: item.tags || [], author: item.author})};`).join('\n    ') : ''}
+  script(data-pjax src=url_for('/js/shuoshuo-decrypt.js'))

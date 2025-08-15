@@ -184,14 +184,27 @@ aplayer:
 
 # Security
 encrypt: # hexo-blog-encrypt
-  abstract: 有东西被加密了, 请输入密码查看.
-  message: 您好, 这里需要密码.
+  abstract: 喵 ~ 你是外星人！
+  message: 喵 ~ 你是外星人！
   tags:
   - {name: 日记, password: 'sky'}
   # - {name: tagName, password: 密码B}
   theme: xray
-  wrong_pass_message: 抱歉, 这个密码看着不太对, 请再试试.
-  wrong_hash_message: 抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.
+  wrong_pass_message: 哒咩 ~ 主人不让我告诉你捏
+  wrong_hash_message: 哒咩 ~ 主人不让我告诉你捏
+  # shuoshuo加密配置
+  shuoshuo:
+    enable: true
+    password: 'sky'  # shuoshuo的密码
+    encrypted_keys:  # 需要加密的shuoshuo条目key列表
+      - 'key-1'  # 零碎往事那条
+      - 'key-2'  # 生活琐事那条
+      - 'key-3'
+      - 'key-4'
+      - 'key-5'
+      - 'key-6'
+      - 'key-7'
+      # - 'key-7'  # 可以添加更多需要加密的key
 
 sitemap:
   path: sitemap.xml
