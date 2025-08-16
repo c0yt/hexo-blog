@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 复制成功通知（防抖）
       showCopyNotify: debounce(function() {
         this.$notify({
-          title: "复制成功！😋",
+          title: "复制成功！ovo",
           message: "转载要记得加上原文链接哦 ~",
           position: "top-right",
           offset: 50,
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
       showWelcome: debounce(function() {
         if (!this.welcomeShown) {
           this.$notify({
-            title: "欢迎光临！😄",
-            message: "茶已备好，让我们一起饮茶吧！",
+            title: "欢迎光临 ~",
+            message: "茶已备好，来饮茶咩 ~ ",
             position: "top-right",
             offset: 50,
             showClose: true,
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 反调试通知（防抖）
       showDebugWarning: debounce(function() {
         const messages = [
-          "别看了别看了，这里啥都没有 🙈",
+          "别看了别看了，这里啥都没有 ~ ",
           "再看就要警告第" + (this.debuggerCount + 1) + "次了！",
           "你是不是想扒我站？现在是不是很内疚？",
           "这么热爱学习，不如给本站打赏点饮料钱？",
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         this.debuggerCount++;
         this.$notify({
-          title: "Hacker！！被发现啦！👀",
+          title: "Hacker！！被发现啦！(事件你)",
           message: messages[this.debuggerCount % messages.length],
           position: "top-right",
           offset: 50,
@@ -64,17 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
       // 查看源代码通知（防抖）
       showViewSourceWarning: debounce(function() {
         const messages = [
-          "按什么按，又想看源码了是吧？🤔",
-          "这些快捷键我都知道，你是斗不过我的！😎",
-          "你以为这样就能看到源码吗？我早就猜到啦！🧙‍♂️",
-          "再按就要警告第" + (this.viewSourceCount + 1) + "次了哦！😅",
-          "都说了source看不了啦，死心吧少年！🚫",
-          "要源码给源码！来看看我的茶话会吧～🍵"
+          "按什么按，又想看源码了是吧？",
+          "这些快捷键我都知道，你是斗不过我的！",
+          "你以为这样就能看到源码吗？我早就猜到啦！",
+          "再按就要警告第" + (this.viewSourceCount + 1) + "次了哦！",
+          "都说了source看不了啦，死心吧少年！",
+          "要源码给源码！来看看我的茶话会吧～"
         ];
         
         this.viewSourceCount++;
         this.$notify({
-          title: "Hacker！！被发现啦！👀",
+          title: "Hacker！！被发现啦！",
           message: messages[this.viewSourceCount % messages.length],
           position: "top-right",
           offset: 50,

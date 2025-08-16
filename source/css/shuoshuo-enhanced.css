@@ -1,13 +1,29 @@
 /* 说说时间轴样式 */
 
-/* 时间轴容器 */
-#article-container {
-  position: relative;
-  padding-left: 0;
+/* 防止水平滚动 - 只在说说页面生效 */
+body:has([data-type="shuoshuo"]) {
+  overflow-x: hidden;
 }
 
-/* 时间轴主线 */
-#article-container::before {
+/* 或者使用页面特定的选择器 */
+.layout:has(#page) #page {
+  overflow-x: hidden;
+}
+
+/* 时间轴容器 - 只在说说页面生效 */
+body[data-type="shuoshuo"] #article-container,
+.shuoshuo #article-container {
+  position: relative;
+  padding-left: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* 时间轴主线 - 只在说说页面生效 */
+body[data-type="shuoshuo"] #article-container::before,
+.shuoshuo #article-container::before {
   content: '';
   position: absolute;
   left: 50%;
@@ -23,34 +39,42 @@
   z-index: 1;
 }
 
-/* 说说卡片容器 */
-#article-container .shuoshuo-item {
+/* 说说卡片容器 - 只在说说页面生效 */
+body[data-type="shuoshuo"] #article-container .shuoshuo-item,
+.shuoshuo #article-container .shuoshuo-item {
   background: #fff;
   border-radius: 12px;
   border: 1px solid #e3e8f7;
   margin-bottom: 40px;
   padding: 24px;
   position: relative;
-  width: calc(50% - 40px);
+  width: calc(50% - 60px);
+  max-width: calc(50% - 60px);
   transition: all 0.3s ease;
   box-shadow: 0 2px 16px -3px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 /* 左右交替布局 - 使用计数器来正确处理交替 */
-#article-container {
+body[data-type="shuoshuo"] #article-container,
+.shuoshuo #article-container {
   counter-reset: shuoshuo-counter;
 }
 
-#article-container .shuoshuo-item {
+body[data-type="shuoshuo"] #article-container .shuoshuo-item,
+.shuoshuo #article-container .shuoshuo-item {
   counter-increment: shuoshuo-counter;
 }
 
-#article-container .shuoshuo-item:nth-of-type(odd) {
+body[data-type="shuoshuo"] #article-container .shuoshuo-item:nth-of-type(odd),
+.shuoshuo #article-container .shuoshuo-item:nth-of-type(odd) {
   margin-left: 0;
   margin-right: auto;
 }
 
-#article-container .shuoshuo-item:nth-of-type(even) {
+body[data-type="shuoshuo"] #article-container .shuoshuo-item:nth-of-type(even),
+.shuoshuo #article-container .shuoshuo-item:nth-of-type(even) {
   margin-left: auto;
   margin-right: 0;
 }
@@ -394,7 +418,72 @@
 
 
 
+/* 响应式设计 - 移动端 */
 @media (max-width: 768px) {
+  /* 移动端容器调整 */
+  #article-container {
+    padding: 0 15px;
+    overflow-x: hidden;
+  }
+
+  /* 移动端时间轴主线调整为左侧 */
+  body[data-type="shuoshuo"] #article-container::before,
+  .shuoshuo #article-container::before {
+    left: 20px;
+    transform: none;
+  }
+
+  /* 移动端卡片样式 */
+  body[data-type="shuoshuo"] #article-container .shuoshuo-item,
+  .shuoshuo #article-container .shuoshuo-item {
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    margin-left: 30px !important;
+    margin-right: 10px !important;
+    margin-bottom: 25px;
+    padding: 16px;
+  }
+
+  /* 移动端节点位置调整 */
+  body[data-type="shuoshuo"] #article-container .shuoshuo-item::before,
+  .shuoshuo #article-container .shuoshuo-item::before {
+    left: -25px !important;
+    right: auto !important;
+    top: 20px;
+  }
+
+  /* 移动端连接线调整 */
+  body[data-type="shuoshuo"] #article-container .shuoshuo-item::after,
+  .shuoshuo #article-container .shuoshuo-item::after {
+    left: -5px !important;
+    right: auto !important;
+    top: 26px;
+    width: 20px;
+  }
+
+  /* 头像和信息调整 */
+  .shuoshuo-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .shuoshuo-info {
+    margin-left: 8px;
+  }
+
+  .shuoshuo-author {
+    font-size: 12px;
+  }
+
+  .shuoshuo-date {
+    font-size: 10px;
+  }
+
+  .shuoshuo-content {
+    font-size: 13px;
+    padding: 12px 0;
+  }
+
   .shuoshuo-year-title {
     margin: 30px 0 20px;
   }
@@ -416,5 +505,84 @@
   .shuoshuo-month-title h3 {
     font-size: 12px;
     padding: 5px 10px;
+  }
+}
+
+/* 折叠功能样式 */
+.shuoshuo-item {
+  position: relative;
+}
+
+.shuoshuo-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e3e8f7;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  color: #666;
+  z-index: 10;
+}
+
+.shuoshuo-toggle:hover {
+  background: #f8f9fa;
+  border-color: #d1d5db;
+  transform: scale(1.1);
+}
+
+.shuoshuo-content {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.shuoshuo-item.collapsed .shuoshuo-content {
+  max-height: 60px;
+  position: relative;
+}
+
+.shuoshuo-item.collapsed .shuoshuo-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
+  pointer-events: none;
+}
+
+.shuoshuo-item.collapsed .shuoshuo-toggle::before {
+  content: '▼';
+}
+
+.shuoshuo-item:not(.collapsed) .shuoshuo-toggle::before {
+  content: '▲';
+}
+
+/* 默认展开状态的按钮样式 */
+.shuoshuo-toggle::before {
+  content: '▲';
+}
+
+/* 移动端折叠按钮调整 */
+@media (max-width: 768px) {
+  .shuoshuo-toggle {
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .shuoshuo-item.collapsed .shuoshuo-content {
+    max-height: 40px;
   }
 }

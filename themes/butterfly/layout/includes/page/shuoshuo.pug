@@ -95,6 +95,40 @@ if site.data.shuoshuo
             const container = document.getElementById('article-container')
             let start = 0
 
+            // 增强的markdown渲染函数
+            const renderMarkdown = (text) => {
+              if (!text) return ''
+
+              let result = text
+                // 处理代码块 ```code```
+                .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+                // 处理行内代码 `code`
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                // 处理粗体 **text**
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                // 处理斜体 *text*（避免与粗体冲突）
+                .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>')
+                // 处理删除线 ~~text~~
+                .replace(/~~(.*?)~~/g, '<del>$1</del>')
+                // 处理链接 [text](url)
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+                // 处理图片 ![alt](url)
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">')
+                // 处理标题 # ## ###
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+                // 处理无序列表
+                .replace(/^\* (.*$)/gm, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+                // 处理有序列表
+                .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
+                // 处理换行（最后处理）
+                .replace(/\n/g, '<br>')
+
+              return result
+            }
+
             const renderData = (dataSlice) => {
               const content = dataSlice.map(item => {
                 const formattedDate = formatToTimeZone(item.date)
@@ -108,8 +142,12 @@ if site.data.shuoshuo
                   ? `<div class="shuoshuo-comment no-comment" data-key="${item.key}"></div>`
                   : ''
 
+                // 渲染markdown内容
+                const renderedContent = renderMarkdown(item.content)
+
                 return `
                   <div class="shuoshuo-item">
+                    <div class="shuoshuo-toggle" onclick="toggleShuoshuo(this)"></div>
                     <div class="container">
                       <div class="shuoshuo-item-header">
                         <div class="shuoshuo-avatar">
@@ -122,7 +160,7 @@ if site.data.shuoshuo
                           </time>
                         </div>
                       </div>
-                      <div class="shuoshuo-content">${item.content}</div>
+                      <div class="shuoshuo-content">${renderedContent}</div>
                       <div class="shuoshuo-footer ${tags ? 'flex-between' : 'flex-end'}">
                         ${tags ? `<div class="shuoshuo-tags">${tags}</div>` : ''}
                         ${commentButton}
@@ -250,4 +288,30 @@ if hasEncrypted
     window.shuoshuoData = {};
     window.commentsJsLoad = #{commentsJsLoad || false};
     !{site.data.shuoshuo ? site.data.shuoshuo.map(item => `window.shuoshuoData['${item.key}'] = ${JSON.stringify({key: item.key, tags: item.tags || [], author: item.author})};`).join('\n    ') : ''}
-  script(data-pjax src=url_for('/js/shuoshuo-decrypt.js'))
+
+script.
+  // 说说折叠功能
+  function toggleShuoshuo(button) {
+    const item = button.closest('.shuoshuo-item');
+    if (item) {
+      item.classList.toggle('collapsed');
+    }
+  }
+
+  // 页面加载完成后初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    // 为所有现有的说说项添加折叠按钮（如果没有的话）
+    const items = document.querySelectorAll('.shuoshuo-item');
+    items.forEach(item => {
+      if (!item.querySelector('.shuoshuo-toggle')) {
+        const toggle = document.createElement('div');
+        toggle.className = 'shuoshuo-toggle';
+        toggle.onclick = function() { toggleShuoshuo(this); };
+        item.insertBefore(toggle, item.firstChild);
+      }
+      // 默认展开状态，移除collapsed类
+      item.classList.remove('collapsed');
+    });
+  });
+
+script(data-pjax src=url_for('/js/shuoshuo-decrypt.js'))
