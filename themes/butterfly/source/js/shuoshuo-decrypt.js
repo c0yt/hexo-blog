@@ -579,11 +579,11 @@
     const notification = document.createElement('div');
     notification.className = `cute-notification cute-notification-${type}`;
 
-    // 根据类型选择图标和颜色
+    // 根据类型选择图标和颜色 - 简约风格
     const iconMap = {
-      'success': { icon: '✓', color: '#10b981', bgColor: '#ecfdf5' },
-      'error': { icon: '✗', color: '#ef4444', bgColor: '#fef2f2' },
-      'warning': { icon: '!', color: '#f59e0b', bgColor: '#fffbeb' }
+      'success': { icon: '●', color: '#84AF9B', bgColor: 'rgba(132, 175, 155, 0.1)' },
+      'error': { icon: '●', color: '#ff6b6b', bgColor: 'rgba(255, 107, 107, 0.1)' },
+      'warning': { icon: '●', color: '#ffa726', bgColor: 'rgba(255, 167, 38, 0.1)' }
     };
 
     const config = iconMap[type] || iconMap['success'];
@@ -597,25 +597,23 @@
       <button class="cute-notification-close">×</button>
     `;
 
-    // 添加样式
+    // 添加样式 - 简约风格
     notification.style.cssText = `
       position: fixed;
-      top: 50px;
+      top: 20px;
       right: 20px;
       background: ${config.bgColor};
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-      padding: 16px 20px;
-      max-width: 320px;
-      min-width: 280px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 12px 16px;
+      max-width: 280px;
       z-index: 9999;
-      border-left: 4px solid ${config.color};
-      animation: slideInRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-left: 3px solid ${config.color};
+      animation: slideInRight 0.3s ease;
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
     `;
 
     // 添加动画样式
@@ -646,87 +644,44 @@
         }
 
         .cute-notification-icon {
-          font-size: 18px;
-          font-weight: bold;
+          font-size: 12px;
           line-height: 1;
           flex-shrink: 0;
-          margin-top: 2px;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-        }
-
-        .cute-notification-success .cute-notification-icon {
-          background: #10b981;
-        }
-
-        .cute-notification-error .cute-notification-icon {
-          background: #ef4444;
-        }
-
-        .cute-notification-warning .cute-notification-icon {
-          background: #f59e0b;
+          color: ${config.color};
         }
 
         .cute-notification-content {
           flex: 1;
-          min-width: 0;
+          color: #333;
         }
 
         .cute-notification-title {
-          font-weight: 600;
-          margin-bottom: 4px;
-          color: #2c3e50;
-          font-size: 15px;
+          font-weight: 500;
+          font-size: 14px;
           line-height: 1.4;
+          margin: 0;
         }
 
         .cute-notification-message {
-          color: #64748b;
+          color: #666;
           font-size: 13px;
-          line-height: 1.5;
+          line-height: 1.4;
           margin: 0;
         }
 
         .cute-notification-close {
-          position: absolute;
-          top: 12px;
-          right: 12px;
           background: none;
           border: none;
-          font-size: 20px;
+          font-size: 16px;
           cursor: pointer;
-          color: #94a3b8;
-          width: 24px;
-          height: 24px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-          transition: all 0.2s ease;
+          color: #999;
+          padding: 0;
+          margin-left: 8px;
           line-height: 1;
         }
 
         .cute-notification-close:hover {
-          background: rgba(0,0,0,0.1);
-          color: #64748b;
-          transform: scale(1.1);
-        }
-
-        .cute-notification-success {
-          border-left-color: #10b981 !important;
-        }
-
-        .cute-notification-error {
-          border-left-color: #ef4444 !important;
-        }
-
-        .cute-notification-warning {
-          border-left-color: #f59e0b !important;
+          color: #666;
         }
       `;
       document.head.appendChild(style);
