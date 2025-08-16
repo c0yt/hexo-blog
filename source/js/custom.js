@@ -23,9 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }, 300),
 
-      // 欢迎通知（防抖）
+      // 欢迎通知（防抖）- 每次新会话显示一次
       showWelcome: debounce(function() {
-        if (!this.welcomeShown) {
+        // 使用 sessionStorage 来控制，每次新会话（重新打开浏览器/标签页）都会显示
+        const hasShownWelcomeInSession = sessionStorage.getItem('hasShownWelcomeInSession');
+
+        if (!hasShownWelcomeInSession) {
           this.$notify({
             title: "欢迎光临 ~",
             message: "茶已备好，来饮茶咩 ~ ",
@@ -35,8 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "success",
             duration: 4000
           });
+
+          // 标记本次会话已显示欢迎信息
+          sessionStorage.setItem('hasShownWelcomeInSession', 'true');
           this.welcomeShown = true;
         }
+      }, 300),
+
+      // Think页面特殊提示
+      showThinkPageNotify: debounce(function() {
+        this.$notify({
+          title: "布豪！被你发现啦 ~",
+          message: "你是外星人，主人不让我给你看捏 ~",
+          position: "top-right",
+          offset: 50,
+          showClose: true,
+          type: "warning",
+          duration: 4000
+        });
       }, 300),
 
       // 反调试通知（防抖）
@@ -85,8 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300)
     },
     mounted() {
-      // 页面加载完成显示欢迎信息
-      this.showWelcome();
+      // 检查当前页面路径
+      const currentPath = window.location.pathname;
+
+      // 每次新会话显示欢迎信息（延迟显示，让页面完全加载）
+      setTimeout(() => {
+        this.showWelcome();
+      }, 1000);
+
+      // 如果是 think 页面，显示特殊提示
+      if (currentPath.includes('/think') || currentPath.includes('/think/')) {
+        setTimeout(() => {
+          this.showThinkPageNotify();
+        }, 1500); // 稍微延迟一点，避免与欢迎信息重叠
+      }
 
       // 添加复制按钮点击监听
       document.querySelectorAll('.copy-button').forEach(btn => {
