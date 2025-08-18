@@ -574,6 +574,34 @@
     }
   }
 
+  // 通知管理器
+  const notificationManager = {
+    notifications: [],
+    baseTop: 20,
+    spacing: 10,
+
+    add(notification) {
+      this.notifications.push(notification);
+      this.updatePositions();
+    },
+
+    remove(notification) {
+      const index = this.notifications.indexOf(notification);
+      if (index > -1) {
+        this.notifications.splice(index, 1);
+        this.updatePositions();
+      }
+    },
+
+    updatePositions() {
+      let currentTop = this.baseTop;
+      this.notifications.forEach((notification, index) => {
+        notification.style.top = currentTop + 'px';
+        currentTop += notification.offsetHeight + this.spacing;
+      });
+    }
+  };
+
   // 简单通知函数（备用方案）
   function createSimpleNotification(title, message, type) {
     const notification = document.createElement('div');
@@ -614,6 +642,7 @@
       align-items: center;
       gap: 8px;
       font-size: 14px;
+      transition: all 0.3s ease;
     `;
 
     // 添加动画样式
@@ -647,7 +676,18 @@
           font-size: 12px;
           line-height: 1;
           flex-shrink: 0;
-          color: ${config.color};
+        }
+
+        .cute-notification-success .cute-notification-icon {
+          color: #84AF9B;
+        }
+
+        .cute-notification-error .cute-notification-icon {
+          color: #ff6b6b;
+        }
+
+        .cute-notification-warning .cute-notification-icon {
+          color: #ffa726;
         }
 
         .cute-notification-content {
@@ -689,11 +729,15 @@
 
     document.body.appendChild(notification);
 
+    // 添加到通知管理器
+    notificationManager.add(notification);
+
     // 关闭函数
     const closeNotification = () => {
-      notification.style.animation = 'fadeOut 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      notification.style.animation = 'fadeOut 0.3s ease';
       setTimeout(() => {
         if (notification.parentNode) {
+          notificationManager.remove(notification);
           notification.remove();
         }
       }, 300);
