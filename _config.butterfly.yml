@@ -615,7 +615,6 @@ waline:
     wordLimit: 300
     pageSize: 10
     search: false
-    turnstileKey: '0x4AAAAAABN-lsnhXHhPFETM'
     locale:
       placeholder: "欢迎留下宝贵的建议，留下邮箱可以收到邮件提醒哦~"
 
