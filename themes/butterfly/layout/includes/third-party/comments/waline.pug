@@ -44,11 +44,12 @@ script.
             });
             return Promise.reject();
           }
-
+          const token = 'fzero_upload_images';
           let formData = new FormData();
-          formData.append('file', file);
+          formData.append('image', file);
+          formData.append('token', 'fzero_upload_images')
           
-          return fetch('https://api.xinyew.cn/api/jdtc', {
+          return fetch('https://api.fzero.qzz.io/api/upload', {
             method: 'POST',
             body: formData,
             mode: 'cors',
