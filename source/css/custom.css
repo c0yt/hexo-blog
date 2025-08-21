@@ -76,27 +76,27 @@
     backdrop-filter: var(--backdrop-filter);
   }
   
-  [data-theme="dark"] #page-header.nav-fixed #nav {
+  /* [data-theme="dark"] #page-header.nav-fixed #nav {
     background: rgba(0, 0, 0, 0.7) !important;
   }
-  
+   */
   /* 夜间模式遮罩 */
-  [data-theme="dark"] #recent-posts > .recent-post-item,
+  /* [data-theme="dark"] #recent-posts > .recent-post-item,
   [data-theme="dark"] #aside-content .card-widget,
   [data-theme="dark"] div#post,
   [data-theme="dark"] div#archive,
   [data-theme="dark"] div#page {
     background: var(--trans-dark);
-  }
+  } */
   
   
   /* 夜间模式页脚页头遮罩透明 */
-  [data-theme="dark"] #footer::before {
+  /* [data-theme="dark"] #footer::before {
     background: transparent !important;
   }
   [data-theme="dark"] #page-header::before {
     background: transparent !important;
-  }
+  } */
   
   /* 阅读模式 */
   .read-mode #aside-content .card-widget {
@@ -107,14 +107,14 @@
   }
   
   /* 夜间模式下的阅读模式 */
-  [data-theme="dark"] .read-mode #aside-content .card-widget {
+  /* [data-theme="dark"] .read-mode #aside-content .card-widget {
     background: rgba(25, 25, 25, 0.9) !important;
     color: #ffffff;
   }
   [data-theme="dark"] .read-mode div#post {
     background: rgba(25, 25, 25, 0.9) !important;
     color: #ffffff;
-  }
+  } */
   /* 文章页H1-H6图标样式效果 */
 /* 控制风车转动速度 4s那里可以自己调节快慢 */
 h1::before,
@@ -342,3 +342,83 @@ h6::before {
   padding: 4px;
   border-radius: 4px;
 }
+
+/* ========== 页脚透明背景 + 文字边界 ========== */
+#footer-wrap,
+#footer,
+footer {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.5) !important; /* 添加顶部边界线 */
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 20px 0 !important;
+}
+
+#footer-wrap::before,
+#footer::before,
+footer::before {
+  display: none !important;
+}
+
+#footer-wrap::after,
+#footer::after,
+footer::after {
+  display: none !important;
+}
+
+/* 深色模式下的页脚 */
+[data-theme="dark"] #footer-wrap,
+[data-theme="dark"] #footer,
+[data-theme="dark"] footer {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.3) !important; /* 深色模式边界线 */
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 页脚内容也要透明 */
+#footer-wrap > *,
+#footer > *,
+footer > * {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* 版权文字增强可读性 */
+#footer-wrap .copyright {
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important; /* 文字阴影增强对比 */
+  font-weight: 500 !important;
+  margin-bottom: 15px !important;
+}
+
+[data-theme="dark"] #footer-wrap .copyright {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* 页脚徽章增强边界 */
+/* #footer-wrap .footer_custom_text a {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important; 徽章阴影 */
+  /* border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+} */
+
+#footer-wrap .footer_custom_text a:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* LA统计小部件增强对比 */
+#footer-wrap #LA-DATA-WIDGET {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5)) !important;
+}
+
