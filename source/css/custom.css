@@ -45,13 +45,10 @@
   }
   
   /* 首页文章卡片 */
-  #recent-posts > .recent-post-item {
+  #recent-posts>.recent-post-item {
     background: var(--trans-light);
-    backdrop-filter: var(--backdrop-filter);
-    border-radius: 25px;
-    border: var(--border-style);
   }
-  
+
   /* 首页侧栏卡片 */
   #aside-content .card-widget {
     background: var(--trans-light);
@@ -59,7 +56,7 @@
     border-radius: 18px;
     border: var(--border-style);
   }
-  
+
   /* 文章页、归档页、普通页面 */
   div#post,
   div#page,
@@ -343,26 +340,47 @@ h6::before {
   border-radius: 4px;
 }
 
-/* ========== 页脚透明背景 + 文字边界 ========== */
+/* ========== 页脚自然渐变半透明效果 ========== */
 #footer-wrap,
 #footer,
 footer {
+  position: relative !important;
   background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
   border: none !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.5) !important; /* 添加顶部边界线 */
+  border-top: none !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  padding: 20px 0 !important;
+  padding: 60px 0 20px 0 !important;
 }
 
+/* 创建渐变遮罩层 */
 #footer-wrap::before,
 #footer::before,
 footer::before {
-  display: none !important;
+  content: '' !important;
+  position: absolute !important;
+  top: -60px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.01) 15%,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.2) 100%) !important;
+  backdrop-filter: blur(6px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(6px) saturate(110%) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
 }
+
+
 
 #footer-wrap::after,
 #footer::after,
@@ -422,3 +440,115 @@ footer > * {
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5)) !important;
 }
 
+/* ========== 侧栏卡片透明毛玻璃效果 ========== */
+.card-widget,
+.widget-card,
+#aside .card-widget,
+#aside .widget-card,
+.aside-list .card-widget {
+  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* 悬停效果 */
+.card-widget:hover,
+.widget-card:hover,
+#aside .card-widget:hover,
+#aside .widget-card:hover,
+.aside-list .card-widget:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 深色模式下的侧栏卡片 */
+[data-theme="dark"] .card-widget,
+[data-theme="dark"] .widget-card,
+[data-theme="dark"] #aside .card-widget,
+[data-theme="dark"] #aside .widget-card,
+[data-theme="dark"] .aside-list .card-widget {
+  background: rgba(0, 0, 0, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 深色模式悬停效果 */
+[data-theme="dark"] .card-widget:hover,
+[data-theme="dark"] .widget-card:hover,
+[data-theme="dark"] #aside .card-widget:hover,
+[data-theme="dark"] #aside .widget-card:hover,
+[data-theme="dark"] .aside-list .card-widget:hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 卡片内容文字优化 */
+.card-widget .card-content,
+.widget-card .card-content,
+.card-widget .item-headline,
+.widget-card .item-headline {
+  color: inherit !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ========== 位置信息卡片透明毛玻璃效果 ========== */
+#welcome-info {
+  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(150%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* 位置信息卡片悬停效果 */
+#welcome-info:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 深色模式下的位置信息卡片 */
+[data-theme="dark"] .card-location,
+[data-theme="dark"] .location-card,
+[data-theme="dark"] .card-widget.location,
+[data-theme="dark"] #aside .card-location,
+[data-theme="dark"] #aside .location-card,
+[data-theme="dark"] .aside-list .card-location,
+[data-theme="dark"] .card-widget[data-widget="location"],
+[data-theme="dark"] .widget-card[data-widget="location"],
+[data-theme="dark"] .card-widget:has(.location-info),
+[data-theme="dark"] .widget-card:has(.location-info) {
+  background: rgba(0, 0, 0, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 深色模式位置信息卡片悬停效果 */
+[data-theme="dark"] .card-location:hover,
+[data-theme="dark"] .location-card:hover,
+[data-theme="dark"] .card-widget.location:hover,
+[data-theme="dark"] #aside .card-location:hover,
+[data-theme="dark"] #aside .location-card:hover,
+[data-theme="dark"] .aside-list .card-location:hover,
+[data-theme="dark"] .card-widget[data-widget="location"]:hover,
+[data-theme="dark"] .widget-card[data-widget="location"]:hover,
+[data-theme="dark"] .card-widget:has(.location-info):hover,
+[data-theme="dark"] .widget-card:has(.location-info):hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4) !important;
+}

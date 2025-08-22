@@ -185,7 +185,7 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub:
-    # - 今日事&#44;今日畢
+    # - 哇，看看你发现了什么！👆
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -195,7 +195,7 @@ subtitle:
 # 5: Info displayed on the cover
 # 6: Masonry layout - Cover on top, info on the bottom
 # 7: Masonry layout - Info displayed on the cover
-index_layout: 1
+index_layout: 3
 
 # Display the article introduction on homepage
 # 1: description
@@ -1064,16 +1064,19 @@ structured_data: true
 css_prefix: true
 
 # 页脚音乐胶囊
-capsule:
+# capsule:
+#   enable: true
+#   # 歌单 ID / 单曲 ID
+#   id: 13597135963
+#   # 服务商：netease / qq / xiami / kugou / baidu
+#   server: netease
+#   # 类型：playlist / song
+#   type: playlist
+#   meting_api: https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r
+#   volume: 0.8
+
+live2d:
   enable: true
-  # 歌单 ID / 单曲 ID
-  id: 13597135963
-  # 服务商：netease / qq / xiami / kugou / baidu
-  server: netease
-  # 类型：playlist / song
-  type: playlist
-  meting_api: https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r
-  volume: 0.8
 
 # Inject
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
@@ -1126,6 +1129,9 @@ inject:
     # - <script defer data-pjax src="/js/cat.js"></script>
     # - <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
     # - <script src="xxxx"></script>
+    - <script async src="/js/title.js"></script>
+    # - <script src="/live2d/autoload.js"></script>
+    # - <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0-rc.7/dist/autoload.js"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
