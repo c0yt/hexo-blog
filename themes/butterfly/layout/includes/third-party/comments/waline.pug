@@ -31,12 +31,30 @@ script.
             return Promise.reject('No file selected');
           }
 
+          // 检查文件类型
+          const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
+          const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp'];
+          const fileName = file.name.toLowerCase();
+          const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+
+          if (!allowedTypes.includes(file.type) || !allowedExtensions.includes(fileExtension)) {
+            new Vue().$notify({
+              title: '上传提示',
+              message: '你是大Hacker吗？非图片格式不允许上传！',
+              type: 'error',
+              position: 'top-right',
+              offset: 50,
+              duration: 3000
+            });
+            return Promise.reject();
+          }
+
           // 检查文件大小
-          const maxSize = 1 * 1024 * 1024; // 1MB
+          const maxSize = 2 * 1024 * 1024; // 2MB
           if (file.size > maxSize) {
             new Vue().$notify({
               title: '上传提示',
-              message: '图片大小不能超过 1MB',
+              message: '图片大小不能超过 2MB！',
               type: 'error',
               position: 'top-right',
               offset: 50,
@@ -55,11 +73,22 @@ script.
             mode: 'cors',
           })
             .then((resp) => resp.json())
-            .then((resp) => resp.data.url)
+            .then((resp) => {
+              // 上传成功提示
+              new Vue().$notify({
+                title: '上传提示',
+                message: '图片上传成功！',
+                type: 'success',
+                position: 'top-right',
+                offset: 50,
+                duration: 3000
+              });
+              return resp.data.url;
+            })
             .catch(() => {
               new Vue().$notify({
                 title: '上传提示',
-                message: '图片上传失败，请重试',
+                message: '图片上传失败，请重试！',
                 type: 'error',
                 position: 'top-right',
                 offset: 50,
